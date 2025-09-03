@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Ateneu Unió · Bar Restaurant a la Colònia Güell. Cuina mediterrània, tapes i bocates. Reserva, horaris i com arribar."/>
+<title>Ateneu Unió · Bar Restaurant</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#7F7C76;
+  --section:#960606;
+  --section-700:#7a0505;
+  --bg:#f3f4f6;
+  --card:#ffffff;
+  --ink:#161616;
+  --muted:#49525e; /* más contraste */
+  --line:#e5e7eb;
+  --band:#f9fafb;
+  /* diseño consistente */
+  --radius:14px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;font-size:16.5px;line-height:1.65;letter-spacing:.1px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+section{scroll-margin-top:84px}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.container > .card{width:100%}
+.container--wide{max-width:1360px}
+.container--narrow{max-width:820px}
+.measure{max-width:62ch}
+
+h1,h2,h3{line-height:1.2;text-wrap:balance}
+h1{font-family:"Bowlby One"}
+h2{font-weight:600}
+
+/* ===== utilidades a11y ===== */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ===== NAVBAR ===== */
+header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);z-index:30}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:var(--section);color:#fff;display:grid;place-items:center;font-family:"Bowlby One";font-size:16px}
+.brand-name{font-family:"Bowlby One";font-size:18px}
+nav a{margin-left:12px;color:inherit;text-decoration:none;font-weight:600}
+nav a.active{color:var(--section);text-decoration-line:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+nav a:hover{text-decoration-line:underline;text-underline-offset:4px}
+.lang{display:flex;gap:6px;align-items:center}
+.lang button{border:1px solid var(--line);background:#fff;padding:6px 8px;border-radius:8px;font-weight:700;cursor:pointer}
+.lang button[aria-current="true"]{border-color:var(--section);color:var(--section)}
+#navToggle{display:none}
+@media (max-width:960px){
+  #navToggle{display:block;border:1px solid var(--line);border-radius:10px;background:#fff;padding:7px 10px}
+  nav{display:none;position:absolute;right:16px;top:64px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-md);padding:10px 14px}
+  nav.open{display:flex;flex-direction:column}
+  nav a{margin:6px 0}
+}
+
+/* ===== HERO ===== */
+.hero-full{position:relative;isolation:isolate}
+.hero-full::before{
+  content:"";
+  position:absolute;inset:0;
+  background:url('https://upload.wikimedia.org/wikipedia/commons/2/2c/Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%BCell%29_2014.JPG') center/cover no-repeat;
+  filter:grayscale(.1) contrast(1.05);
+}
+.hero-full::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.2),rgba(0,0,0,.35))}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1fr;justify-items:center;align-items:center;min-height:54vh;text-align:center;color:#fff;padding:42px 0}
+.hero h1{font-size:44px;margin:0 0 6px;text-shadow:0 2px 16px rgba(0,0,0,.25)}
+.hero p{font-size:18px;margin:0 0 12px;opacity:.95}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:var(--radius);padding:12px 18px;font-weight:800;cursor:pointer;transition:transform .06s ease, background .2s, box-shadow .2s}
+.btn:active{transform:translateY(1px);filter:brightness(.97)}
+.btn-primary{background:var(--section);color:#fff;box-shadow:0 6px 18px rgba(150,6,6,.18)}
+.btn-primary:hover{background:var(--section-700)}
+.btn-ghost{background:#fff;color:#111;border:2px solid var(--line)}
+
+/* ===== LINKS ===== */
+main a:not(.btn){text-decoration-line:underline;text-underline-offset:3px;text-decoration-thickness:2px}
+
+/* ===== INFO STRIP ===== */
+.infostrip{background:#fff;border-top:2px solid var(--section);border-bottom:1px solid var(--line)}
+.infostrip .inner{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:16px 0}
+.info{display:flex;gap:10px;align-items:center;background:var(--band);border:1px solid var(--line);border-left:3px solid var(--section);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow-sm)}
+.info h4{margin:0;font-size:14px;color:var(--section);letter-spacing:.2px}
+.info p{margin:0;font-weight:700}
+
+/* ===== SECCIONES ===== */
+.band{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section{padding:48px 0}
+.section h2{font-family:inherit;font-size:30px;margin:0 0 10px;color:var(--section);display:inline-block;background:linear-gradient(transparent 65%, rgba(150,6,6,.18) 0);padding-bottom:2px}
+.section p.sub{color:var(--muted);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.section-card{padding:20px}
+.section-card>h2{margin-top:0}
+.card--sub{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow-sm)}
+.subgrid{gap:16px}
+
+/* ===== FEATURES ===== */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center}
+.feature .ic{width:28px;height:28px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
+.feature h3{margin:0;font-size:16px;font-weight:600}
+.feature p{margin:4px 0 0;color:#333;font-size:14px}
+
+/* ===== COMO LLEGAR ===== */
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px}
+.step{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center}
+.step .dot{width:28px;height:28px;border-radius:50%;background:var(--section);color:#fff;display:grid;place-items:center;font-weight:800}
+.mini-map iframe{border-radius:12px;border:1px solid var(--line)}
+
+/* ===== CARTA ===== */
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab{appearance:none;border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:800;cursor:pointer}
+.tab[aria-selected="true"]{border-color:var(--section);color:#fff;background:var(--section)}
+.menu-card{padding:16px}
+.tabpanels{display:grid;grid-template-columns:1fr;gap:16px}
+.menubox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.menubox .head{display:flex;align-items:center;gap:8px;background:linear-gradient(90deg, rgba(150,6,6,.08), transparent);padding:8px 10px;border-radius:10px;margin:-4px -4px 8px}
+.menubox .head h3{margin:0;font-size:18px;font-weight:600}
+.menu-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.menu-item{display:flex;align-items:baseline;gap:8px}
+.menu-item .name{font-weight:600}
+.menu-item .dots{flex:1;border-bottom:1px dotted var(--line);opacity:.8;transform:translateY(-4px)}
+.menu-item .price{font-weight:700;white-space:nowrap}
+.menu-item .badge{background:#fff;color:inherit;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+
+/* ===== HORARIOS ===== */
+.hours{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.hrow{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.hrow.today{border-color:var(--section)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-weight:700;border:1px solid var(--line);font-size:.9rem}
+.chip.open{background:rgba(30,180,30,.1);color:#166534;border-color:#86efac}
+.chip.closed{background:rgba(180,30,30,.1);color:#7f1d1d;border-color:#fecaca}
+.status{display:flex;justify-content:flex-start;gap:8px;align-items:center}
+
+/* ===== GRID / TABLES ===== */
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.grid2--equal{grid-template-columns:1fr 1fr}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}
+.table td{background:var(--card);border:1px solid var(--line);padding:8px 10px}
+.table td:first-child{font-weight:700;width:180px}
+
+/* ===== RESEÑAS / GALERÍA ===== */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow-sm)}
+.stars{color:#d4a100;font-size:14px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;grid-auto-rows:180px}
+.gallery figure{margin:0}
+.gallery img{border-radius:12px;width:100%;height:100%;object-fit:cover;border:1px solid var(--line)}
+.gallery figure:nth-child(1) img{height:100%}
+.gallery figure:nth-child(2) img{height:100%}
+.gallery figure:nth-child(3) img{height:100%}
+.gallery figure:nth-child(4) img{height:100%}
+.gallery figcaption{font-size:12px;color:#6b7280;margin-top:4px}
+
+/* ===== FOOTER / STICKY ===== */
+footer{border-top:1px solid var(--line);background:#eef0f3}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0}
+.sticky-cta{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;background:#ffffff;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,0,0,.08);border-radius:999px;padding:6px 8px;z-index:40}
+.sticky-cta a{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:14px}
+.sticky-cta .call{background:var(--section);color:#fff}
+.sticky-cta .book{background:#fff;color:#111;border:1px solid var(--line)}
+.sticky-cta .mapbtn{background:#fff;color:var(--section);border:1px solid var(--section)}
+
+/* ===== ACCESIBILIDAD ===== */
+a:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid rgba(150,6,6,.35);outline-offset:3px;border-radius:10px}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px){.tabpanels{grid-template-columns:1fr 1fr}}
+@media (max-width:1024px){
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:960px){
+  .infostrip .inner{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr 1fr}
+  .reviews{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .hero h1{font-size:34px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="logo" aria-label="Ateneu Unió">
+      <div class="logo-mark" aria-hidden="true">AU</div>
+      <div class="brand-name">Ateneu Unió</div>
+    </div>
+    <div class="lang" aria-label="Idioma">
+      <button type="button" data-lang="ca" aria-current="true" aria-label="Canviar a català">CAT</button>
+      <button type="button" data-lang="es" aria-label="Cambiar a español">ES</button>
+      <button type="button" data-lang="en" aria-label="Switch to English">EN</button>
+    </div>
+    <button id="navToggle" aria-label="Obrir menú">☰</button>
+    <nav id="siteNav" aria-label="Navegació principal">
+      <a href="#sobre" data-i18n="nav.sobre">Sobre</a>
+      <a href="#arribar" data-i18n="nav.arribar">Com arribar</a>
+      <a href="#carta" data-i18n="nav.carta">Carta</a>
+      <a href="#horaris" data-i18n="nav.horaris">Horaris</a>
+      <a href="#reserves" data-i18n="nav.reserves">Reserves</a>
+      <a href="#galeria" data-i18n="nav.galeria">Galeria</a>
+      <a href="#contacte" data-i18n="nav.contacte">Contacte</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-full" role="img" aria-label="Cripta de la Colònia Güell de fons">
+  <section class="container hero">
+    <div class="measure">
+      <h1 data-i18n="hero.title">Ateneu Unió · Bar Restaurant</h1>
+      <p data-i18n="hero.desc">Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#reserves" data-i18n="cta.reservar">Reserva taula</a>
+        <a class="btn btn-ghost" href="#carta" data-i18n="cta.vercarta">Veure carta</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- INFO STRIP -->
+<div class="infostrip" aria-label="Informació ràpida">
+  <div class="container inner">
+    <div class="info"><div class="ic" aria-hidden="true">🕑</div><div><h4 data-i18n="info.horari">Horari</h4><p>Dl–Dv 07–22 · Ds/Dg 08–22</p></div></div>
+    <div class="info"><div class="ic" aria-hidden="true">📞</div><div><h4 data-i18n="info.tel">Telèfon</h4><p><a id="telQuick" href="tel:+34931253062" aria-label="Trucar al 931 253 062">931 253 062</a></p></div></div>
+    <div class="info"><div class="ic" aria-hidden="true">📍</div><div><h4 data-i18n="info.adreca">Adreça</h4><p>Plaça Joan Güell, 5 · Colònia Güell</p></div></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section id="sobre" class="container section">
+    <div class="card section-card">
+      <h2 data-i18n="sobre.titulo">Sobre nosaltres</h2>
+      <div class="features">
+        <div class="feature"><div class="ic" aria-hidden="true">🍝</div><div><h3>Pastes casolanes</h3><p>Salses de temporada i receptes pròpies.</p></div></div>
+        <div class="feature"><div class="ic" aria-hidden="true">🥩</div><div><h3>Carns al punt</h3><p>Selecció de talls per a tots els gustos.</p></div></div>
+        <div class="feature"><div class="ic" aria-hidden="true">🥗</div><div><h3>Tapes per compartir</h3><p>Clàssics mediterranis de proximitat.</p></div></div>
+        <div class="feature"><div class="ic" aria-hidden="true">⚽</div><div><h3>Pantalla gran</h3><p>Veu el futbol a la plaça.</p></div></div>
+      </div>
+      <p data-i18n="sobre.p1" class="measure" style="margin-top:10px">A l’Ateneu Unió, t’obrim les portes a la Plaça Joan Güell, al cor de la Colònia Güell, un entorn ple d’història i encant modernista. Som punt de trobada per a famílies i visitants que volen gaudir d’una cuina casolana i propera.</p>
+      <p data-i18n="sobre.p2" class="measure">Menú del dia variable, tapes clàssiques i bocates freds i calents. Terrassa a la plaça i ambient tranquil.</p>
+      <p class="small" data-i18n="sobre.politica">Política de cancel·lació: Guardem el dret de cancel·lar una reserva.</p>
+    </div>
+  </section>
+
+<!-- COM ARRIBAR -->
+<section id="arribar" class="container section">
+  <div class="card section-card">
+    <h2 data-i18n="sobre.comArribar">Com arribar</h2>
+    <div class="grid2 grid2--equal subgrid">
+      <div class="card--sub">
+        <ul class="steps">
+          <li class="step"><div class="dot" aria-hidden="true">🚆</div><div>FGC · parada <strong>Colònia Güell</strong></div></li>
+          <li class="step"><div class="dot" aria-hidden="true">🚌</div><div>Autobús <strong>L76</strong> · baixada a Colònia Güell</div></li>
+          <li class="step"><div class="dot" aria-hidden="true">🅿️</div><div>Aparcament a la zona de la plaça</div></li>
+        </ul>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/place/Pla%C3%A7a+Joan+G%C3%Buell,+5,+Col%C3%B2nia+G%C3%Bell" target="_blank" rel="noopener" data-i18n="sobre.abrirmapa">Obrir a Google Maps</a>
+      </div>
+      <div class="card--sub mini-map">
+        <iframe src="https://www.google.com/maps?q=Plaça%20Joan%20Güell%205%20Colònia%20Güell&output=embed" width="100%" height="240" style="border:0" loading="lazy" title="Mapa ràpid: ubicació Ateneu Unió"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section id="carta" class="container section">
+  <div class="card section-card">
+    <h2 data-i18n="carta.titulo">Carta</h2>
+    <p class="sub measure" data-i18n="carta.sub">El menú del dia es modifica cada dia. Consulta’l al restaurant. A continuació, tapes i bocates amb preus.</p>
+
+    <div class="menu-card">
+      <div role="tablist" aria-label="Categories" class="tabs">
+        <button role="tab" class="tab" aria-selected="true" aria-controls="panel-tapes" id="tab-tapes" data-i18n="carta.tapes">Tapes</button>
+        <button role="tab" class="tab" aria-selected="false" aria-controls="panel-freds" id="tab-freds" data-i18n="carta.freds">Freds</button>
+        <button role="tab" class="tab" aria-selected="false" aria-controls="panel-calents" id="tab-calents" data-i18n="carta.calents">Calents</button>
+      </div>
+
+      <div class="tabpanels">
+        <div id="panel-tapes" role="tabpanel" aria-labelledby="tab-tapes" class="menubox">
+          <div class="head"><span class="emoji" aria-hidden="true">🧆</span><h3 data-i18n="carta.tapes">Tapes</h3></div>
+          <ul class="menu-list">
+            <li class="menu-item"><span class="name">Olives</span><span class="dots" aria-hidden="true"></span><span class="price badge">2,00 €</span></li>
+            <li class="menu-item"><span class="name">Braves</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name">Morros</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+            <li class="menu-item"><span class="name">Seitons</span><span class="dots" aria-hidden="true"></span><span class="price badge">7,00 €</span></li>
+            <li class="menu-item"><span class="name">Anxoves</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,00 €</span></li>
+            <li class="menu-item"><span class="name">Tires de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">9,00 €</span></li>
+            <li class="menu-item"><span class="name">Croquetes</span><span class="dots" aria-hidden="true"></span><span class="price badge" data-i18n="carta.croquetesPrecio">1,00 € / unitat</span></li>
+            <li class="menu-item"><span class="name">Calamars a la romana</span><span class="dots" aria-hidden="true"></span><span class="price badge">10,00 €</span></li>
+            <li class="menu-item"><span class="name">Potes de calamar</span><span class="dots" aria-hidden="true"></span><span class="price badge">12,00 €</span></li>
+            <li class="menu-item"><span class="name">Escopinyes</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,50 €</span></li>
+          </ul>
+        </div>
+
+        <div id="panel-freds" role="tabpanel" aria-labelledby="tab-freds" class="menubox" hidden>
+          <div class="head"><span class="emoji" aria-hidden="true">🧊</span><h3 data-i18n="carta.freds">Freds</h3></div>
+          <ul class="menu-list">
+            <li class="menu-item"><span class="name">Fuet</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+            <li class="menu-item"><span class="name">Xoriço</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+            <li class="menu-item"><span class="name">Pernil dolç</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+            <li class="menu-item"><span class="name">Pernil del país</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name">Formatge semi-curat</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name">Bull blanc</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+            <li class="menu-item"><span class="name">Bull negre</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+            <li class="menu-item"><span class="name">Tonyina</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+          </ul>
+        </div>
+
+        <div id="panel-calents" role="tabpanel" aria-labelledby="tab-calents" class="menubox" hidden>
+          <div class="head"><span class="emoji" aria-hidden="true">🔥</span><h3 data-i18n="carta.calents">Calents</h3></div>
+          <ul class="menu-list">
+            <li class="menu-item"><span class="name" data-i18n="calents.bacon">Bacó</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.llom">Llom</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.salsitxes">Saltxixes</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.botifarra">Botifarra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.xistorra">Xistorra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.pit">Pit de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.bikini">Bikini</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+            <li class="menu-item"><span class="name" data-i18n="calents.bikiniMallorqui">Bikini Mallorquí</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORARIS -->
+<section id="horaris" class="container section"><div class="card section-card">
+    <h2 data-i18n="horaris.titulo">Horaris</h2>
+    <div class="status"><span id="openChip" class="chip closed">Tancat ara</span></div>
+    <ul class="hours" id="hoursList">
+      <li class="hrow" data-day="1" data-open="7" data-close="22"><span class="day" data-i18n="dias.dilluns">Dilluns</span><span class="time">07:00–22:00</span></li>
+      <li class="hrow" data-day="2" data-open="7" data-close="22"><span class="day" data-i18n="dias.dimarts">Dimarts</span><span class="time">07:00–22:00</span></li>
+      <li class="hrow" data-day="3" data-open="7" data-close="22"><span class="day" data-i18n="dias.dimecres">Dimecres</span><span class="time">07:00–22:00</span></li>
+      <li class="hrow" data-day="4" data-open="7" data-close="22"><span class="day" data-i18n="dias.dijous">Dijous</span><span class="time">07:00–22:00</span></li>
+      <li class="hrow" data-day="5" data-open="7" data-close="22"><span class="day" data-i18n="dias.divendres">Divendres</span><span class="time">07:00–22:00</span></li>
+      <li class="hrow" data-day="6" data-open="8" data-close="22"><span class="day" data-i18n="dias.dissabte">Dissabte</span><span class="time">08:00–22:00</span></li>
+      <li class="hrow" data-day="0" data-open="8" data-close="22"><span class="day" data-i18n="dias.diumenge">Diumenge</span><span class="time">08:00–22:00</span></li>
+    </ul>
+  </div></section>
+
+<!-- RESEÑAS -->
+<section id="resenas" class="container section"><div class="card section-card">
+    <h2 data-i18n="resenas.titulo">Reseñas</h2>
+    <div class="reviews" aria-label="Opinions de clients">
+      <div class="review"><div class="stars" aria-hidden="true">★★★★★</div><p data-i18n="rev.1">Cuina casolana excel·lent i tracte de 10. Les braves són top.</p><small>Marta R. · 2024-06-12</small></div>
+      <div class="review"><div class="stars" aria-hidden="true">★★★★☆</div><p data-i18n="rev.2">Terrassa molt agradable a la plaça. Repetirem.</p><small>Jordi P. · 2024-07-03</small></div>
+      <div class="review"><div class="stars" aria-hidden="true">★★★★★</div><p data-i18n="rev.3">Croquetes casolanes i carns al punt. Molt recomanable.</p><small>Laura G. · 2024-05-18</small></div>
+    </div>
+  </div></section>
+
+<!-- GALERIA -->
+<section id="galeria" class="container section" aria-label="Galeria d'imatges de la Colònia Güell">
+  <div class="card section-card">
+    <style>
+      #galeria .gallery{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:16px;
+        overflow:hidden; /* oculta cualquier desbordamiento */
+      }
+      #galeria figure{margin:0}
+      #galeria img{
+        display:block;
+        width:100%;
+        height:auto;
+        border-radius:12px;
+        border:1px solid var(--line);
+      }
+      #galeria figcaption{
+        font-size:12px;
+        color:#6b7280;
+        margin-top:6px;
+        line-height:1.35;
+      }
+      @media (max-width:1024px){
+        #galeria .gallery{grid-template-columns:repeat(2,1fr)}
+      }
+      @media (max-width:640px){
+        #galeria .gallery{grid-template-columns:1fr}
+      }
+    </style>
+
+    <div class="gallery">
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%Bell%29_2014.JPG"
+             alt="Façana de l’Ateneu Unió a la Colònia Güell" loading="lazy" decoding="async">
+        <figcaption>Ateneu Unió — Amadalvarez — 
+          <a href="https://commons.wikimedia.org/wiki/File:Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%Bell%29_2014.JPG" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Col%C3%B2nia_G%C3%Bell_-_Teatre_Fontova.jpg"
+             alt="Teatre Fontova a la Colònia Güell" loading="lazy" decoding="async">
+        <figcaption>Teatre Fontova — Herodotptlomeu — 
+          <a href="https://commons.wikimedia.org/wiki/File:Col%C3%B2nia_G%C3%Bell_-_Teatre_Fontova.jpg" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Teatre_Fontova_%28Col%C3%B2nia_G%C3%Bell%29_-_interior.JPG"
+             alt="Interior del Teatre Fontova" loading="lazy" decoding="async">
+        <figcaption>Interior Teatre Fontova — 
+          <a href="https://commons.wikimedia.org/wiki/File:Teatre_Fontova_%28Col%C3%B2nia_G%C3%Bell%29_-_interior.JPG" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Exterior_of_Cripta_de_la_Col%C3%B2nia_G%C3%Bell_04.jpg"
+             alt="Exterior de la Cripta de la Colònia Güell" loading="lazy" decoding="async">
+        <figcaption>Cripta de la Colònia Güell — Joe Mabel — 
+          <a href="https://commons.wikimedia.org/wiki/File:Exterior_of_Cripta_de_la_Col%C3%B2nia_G%C3%Bell_04.jpg" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Crypt_of_Col%C3%B2nia_G%C3%BCell_-_exterior_vaulting_05.jpg"
+             alt="Detall de la volta exterior de la Cripta de la Colònia Güell" loading="lazy" decoding="async">
+        <figcaption>Cripta de la Colònia Güell — Joe Mabel — 
+          <a href="https://commons.wikimedia.org/wiki/File:Crypt_of_Col%C3%B2nia_G%C3%BCell_-_exterior_vaulting_05.jpg" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2b/Monumento_Eusebi_G%C3%BCell.jpg"
+             alt="Monument a Eusebi Güell a la Colònia Güell" loading="lazy" decoding="async">
+        <figcaption>Monument a Eusebi Güell — 
+          <a href="https://commons.wikimedia.org/wiki/File:Monumento_Eusebi_G%C3%BCell.jpg" target="_blank" rel="noopener">Commons</a> — 
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONTACTE + RESERVES -->
+<section id="contacte" class="container section">
+  <div class="grid2 grid2--equal">
+    <div id="reserves" class="card">
+      <h2 data-i18n="reserves.titulo">Reserves</h2>
+      <table class="table">
+        <tr><td data-i18n="reserves.tel">Telèfon</td><td><a id="telLink" href="tel:+34931253062" aria-label="Trucar al 931 253 062">931 253 062</a></td></tr>
+        <tr><td>Email</td><td><a id="mailLink" href="mailto:montse.ateneu.unio@gmail.com" aria-label="Enviar email a montse.ateneu.unio@gmail.com">montse.ateneu.unio@gmail.com</a></td></tr>
+        <tr><td data-i18n="reserves.confauto">Confirmació automàtica</td><td data-i18n="reserves.noauto">No (contacte per telèfon o email)</td></tr>
+      </table>
+      <div class="cta">
+        <a class="btn btn-primary" id="btnCall" href="tel:+34931253062" aria-label="Trucar" data-i18n="reserves.btnTrucar">Trucar</a>
+        <a class="btn btn-ghost" id="btnEmail" href="mailto:montse.ateneu.unio@gmail.com?subject=Reserva%20Ateneu%20Uni%C3%B2&body=Nom:%0ATel:%0AData:%0AHora:%0AComensals:%0A" data-i18n="reserves.btnEmail">Enviar email</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="contacte.titulo">Contacte i xarxes</h2>
+      <table class="table">
+        <tr><td>Instagram</td><td><a href="https://instagram.com/restaurant_ateneu_unio" target="_blank" rel="noopener">@restaurant_ateneu_unio</a></td></tr>
+        <tr><td>Google Business</td><td><a href="https://share.google/auXWqp0RhxX6SDvgn" target="_blank" rel="noopener" data-i18n="contacte.verficha">Veure fitxa</a></td></tr>
+      </table>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/place/Pla%C3%A7a+Joan+G%C3%Buell,+5,+Col%C3%B2nia+G%C3%Bell" target="_blank" rel="noopener" data-i18n="contacte.comarribar">Com arribar</a>
+    </div>
+  </div>
+  <div class="map" style="margin-top:12px">
+    <iframe src="https://www.google.com/maps?q=Plaça%20Joan%20Güell%205%20Colònia%20Güell&output=embed" width="100%" height="260" style="border:0" loading="lazy" title="Mapa de localització Ateneu Unió"></iframe>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Ateneu Unió</strong>
+      <div class="small">© <span id="year"></span> Ateneu Unió · <a href="#" data-i18n="legal.aviso">Avís legal</a> · <a href="#" data-i18n="legal.priv">Privacitat</a> · <a href="#" data-i18n="legal.cookies">Cookies</a></div>
+    </div>
+    <a class="btn btn-primary" href="#reserves" data-i18n="cta.reservar">Reserva taula</a>
+  </div>
+  <small>
+      Foto del hero: Joe Mabel, 
+      <a href="https://commons.wikimedia.org/wiki/File:Exterior_of_Cripta_de_la_Col%C3%B2nia_G%C3%Bell_04.jpg" rel="noopener">Wikimedia Commons</a>, 
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>.
+    </small>
+
+</footer>
+
+<!-- Sticky actions -->
+<div class="sticky-cta" aria-label="Accions ràpides">
+  <a class="call" id="ctaCall" href="tel:+34931253062">📞 <span data-i18n="reserves.btnTrucar">Trucar</span></a>
+  <a class="book" href="#reserves">🗓️ <span data-i18n="cta.reservar">Reserva taula</span></a>
+  <a class="mapbtn" href="https://www.google.com/maps/place/Pla%C3%A7a+Joan+G%C3%Buell,+5,+Col%C3%B2nia+G%C3%Bell" target="_blank" rel="noopener">🗺️ <span data-i18n="contacte.comarribar">Com arribar</span></a>
+</div>
+
+<script>
+(() => {
+  const $ = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+  const currentLang = () => document.documentElement.getAttribute('lang') || 'ca';
+
+  // Nav responsive
+  const nav = $('#siteNav');
+  const toggle = $('#navToggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    document.addEventListener('click', e => { if (!nav.contains(e.target) && e.target !== toggle) nav.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') nav.classList.remove('open'); });
+  }
+
+  // Smooth scroll offset
+  function smoothTo(hash){
+    const target = document.getElementById(hash.replace('#',''));
+    if (!target) return;
+    const headerH = $('header').offsetHeight + 8;
+    const y = target.getBoundingClientRect().top + window.pageYOffset - headerH;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+  $$('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href = a.getAttribute('href');
+      if (href.length > 1) { e.preventDefault(); smoothTo(href); nav.classList.remove('open'); }
+    });
+  });
+
+  // Active link on scroll + fallback
+  const sections = ['sobre','arribar','carta','horaris','reserves','galeria','contacte'];
+  const links = sections.map(id => ({id, el: document.querySelector(`nav a[href="#${id}"]`)}));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(l => l.el && l.el.classList.toggle('active', `#${entry.target.id}` === l.el.getAttribute('href')));
+        }
+      });
+    }, { rootMargin: '-60% 0px -35% 0px', threshold: 0.01 });
+    sections.forEach(id => { const s = document.getElementById(id); if (s) io.observe(s); });
+  } else {
+    links.forEach(l => l.el && l.el.addEventListener('click', () => {
+      links.forEach(m => m.el && m.el.classList.remove('active'));
+      l.el.classList.add('active');
+    }));
+  }
+
+  // Footer year
+  $('#year').textContent = new Date().getFullYear();
+
+  // Tabs (ARIA)
+  const tablist = document.querySelector('[role="tablist"]');
+  const tabs = $$('[role="tab"]', tablist);
+  const panels = $$('[role="tabpanel"]');
+  function activateTab(tab){
+    tabs.forEach(t=>{ t.setAttribute('aria-selected', String(t===tab)); t.tabIndex = t===tab ? 0 : -1; });
+    panels.forEach(p=> p.hidden = (p.getAttribute('aria-labelledby') !== tab.id));
+    try { sessionStorage.setItem('activeTab', tab.id); } catch(e) {}
+    tab.focus();
+  }
+  tabs.forEach(t=>{
+    t.addEventListener('click', ()=>activateTab(t));
+    t.addEventListener('keydown', e=>{
+      const i = tabs.indexOf(document.activeElement);
+      if (e.key==='ArrowRight') { e.preventDefault(); activateTab(tabs[(i+1)%tabs.length]); }
+      if (e.key==='ArrowLeft')  { e.preventDefault(); activateTab(tabs[(i-1+tabs.length)%tabs.length]); }
+      if (e.key==='Home') { e.preventDefault(); activateTab(tabs[0]); }
+      if (e.key==='End')  { e.preventDefault(); activateTab(tabs[tabs.length-1]); }
+    });
+  });
+  const saved = (()=>{ try { return sessionStorage.getItem('activeTab'); } catch(e){ return null; } })();
+  if (saved) {
+    const t = document.getElementById(saved);
+    if (t) activateTab(t);
+  } else {
+    activateTab(document.getElementById('tab-tapes'));
+  }
+
+  // i18n
+  const dict = {
+    ca: {
+      'nav.sobre':'Sobre', 'nav.arribar':'Arribar','nav.carta':'Carta','nav.horaris':'Horaris','nav.reserves':'Reserves','nav.galeria':'Galeria','nav.contacte':'Contacte',
+      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.',
+      'cta.reservar':'Reserva taula','cta.vercarta':'Veure carta',
+      'info.horari':'Horari','info.tel':'Telèfon','info.adreca':'Adreça',
+      'sobre.titulo':'Sobre nosaltres','sobre.p1':'A l’Ateneu Unió, t’obrim les portes a la Plaça Joan Güell, al cor de la Colònia Güell, un entorn ple d’història i encant modernista. Som punt de trobada per a famílies i visitants que volen gaudir d’una cuina casolana i propera.',
+      'sobre.p2':'Menú del dia variable, tapes clàssiques i bocates freds i calents. Terrassa a la plaça i ambient tranquil.',
+      'sobre.politica':'Política de cancel·lació: Guardem el dret de cancel·lar una reserva.',
+      'sobre.comArribar':'Com arribar','sobre.adreca':'Adreça','sobre.transport':'Transport','sobre.transportTxt':'Autobús L76 · FGC (parada Colònia Güell)','sobre.abrirmapa':'Obrir a Google Maps',
+      'carta.titulo':'Carta','carta.sub':'El menú del dia es modifica cada dia. Consulta’l al restaurant. A continuació, tapes i bocates amb preus.','carta.tapes':'Tapes','carta.freds':'Freds','carta.calents':'Calents','carta.croquetesPrecio':'1,00 € / unitat',
+      'calents.bacon':'Bacó','calents.llom':'Llom','calents.salsitxes':'Saltxixes','calents.botifarra':'Botifarra','calents.xistorra':'Xistorra','calents.pit':'Pit de pollastre','calents.bikini':'Bikini','calents.bikiniMallorqui':'Bikini Mallorquí',
+      'horaris.titulo':'Horaris',
+      'dias.dilluns':'Dilluns','dias.dimarts':'Dimarts','dias.dimecres':'Dimecres','dias.dijous':'Dijous','dias.divendres':'Divendres','dias.dissabte':'Dissabte','dias.diumenge':'Diumenge',
+      'reserves.titulo':'Reserves','reserves.tel':'Telèfon','reserves.confauto':'Confirmació automàtica','reserves.noauto':'No (contacte per telèfon o email)','reserves.btnTrucar':'Trucar','reserves.btnEmail':'Enviar email',
+      'resenas.titulo':'Reseñas',
+      'rev.1':'Cuina casolana excel·lent i tracte de 10. Les braves són top.','rev.2':'Terrassa molt agradable a la plaça. Repetirem.','rev.3':'Croquetes casolanes i carns al punt. Molt recomanable.',
+      'contacte.titulo':'Contacte i xarxes','contacte.verficha':'Veure fitxa','contacte.comarribar':'Com arribar',
+      'legal.aviso':'Avís legal','legal.priv':'Privacitat','legal.cookies':'Cookies'
+    },
+    es: {
+      'nav.sobre':'Sobre','nav.arribar':'Cómo llegar','nav.carta':'Carta','nav.horaris':'Horarios','nav.reserves':'Reservas','nav.galeria':'Galería','nav.contacte':'Contacto',
+      'hero.title':'Ateneu Unió · Bar Restaurante','hero.desc':'Cocina mediterránea, tapas y bocatas en el corazón de la Colonia Güell.',
+      'cta.reservar':'Reservar mesa','cta.vercarta':'Ver carta',
+      'info.horari':'Horario','info.tel':'Teléfono','info.adreca':'Dirección',
+      'sobre.titulo':'Sobre nosotros','sobre.p1':'En Ateneu Unió te abrimos las puertas en la Plaça Joan Güell, en la Colonia Güell, un entorno lleno de historia y encanto modernista. Punto de encuentro para familias y visitantes que quieren disfrutar de cocina casera y cercana.',
+      'sobre.p2':'Menú del día variable, tapas clásicas y bocatas fríos y calientes. Terraza en la plaza y ambiente tranquilo.',
+      'sobre.politica':'Política de cancelación: Nos reservamos el derecho de cancelar una reserva.',
+      'sobre.comArribar':'Cómo llegar','sobre.adreca':'Dirección','sobre.transport':'Transporte','sobre.transportTxt':'Autobús L76 · FGC (parada Colonia Güell)','sobre.abrirmapa':'Abrir en Google Maps',
+      'carta.titulo':'Carta','carta.sub':'El menú del día cambia a diario. Consúltalo en el restaurante. A continuación, tapas y bocatas con precios.','carta.tapes':'Tapas','carta.freds':'Fríos','carta.calents':'Calientes','carta.croquetesPrecio':'1,00 € / unidad',
+      'calents.bacon':'Bacon','calents.llom':'Lomo','calents.salsitxes':'Salchichas','calents.botifarra':'Butifarra','calents.xistorra':'Chistorra','calents.pit':'Pechuga de pollo','calents.bikini':'Bikini','calents.bikiniMallorqui':'Bikini Mallorquín',
+      'horaris.titulo':'Horarios',
+      'dias.dilluns':'Lunes','dias.dimarts':'Martes','dias.dimecres':'Miércoles','dias.dijous':'Jueves','dias.divendres':'Viernes','dias.dissabte':'Sábado','dias.diumenge':'Domingo',
+      'reserves.titulo':'Reservas','reserves.tel':'Teléfono','reserves.confauto':'Confirmación automática','reserves.noauto':'No (contacto por teléfono o email)','reserves.btnTrucar':'Llamar','reserves.btnEmail':'Enviar email',
+      'resenas.titulo':'Reseñas',
+      'rev.1':'Cocina casera excelente y trato de 10. Las bravas, top.','rev.2':'Terraza muy agradable en la plaza. Repetiremos.','rev.3':'Croquetas caseras y carnes al punto. Muy recomendable.',
+      'contacte.titulo':'Contacto y redes','contacte.verficha':'Ver ficha','contacte.comarribar':'Cómo llegar',
+      'legal.aviso':'Aviso legal','legal.priv':'Privacidad','legal.cookies':'Cookies'
+    },
+    en: {
+      'nav.sobre':'About','nav.arribar':'Getting here','nav.carta':'Menu','nav.horaris':'Hours','nav.reserves':'Bookings','nav.galeria':'Gallery','nav.contacte':'Contact',
+      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Mediterranean food, tapas and sandwiches in the heart of Colònia Güell.',
+      'cta.reservar':'Book a table','cta.vercarta':'See menu',
+      'info.horari':'Hours','info.tel':'Phone','info.adreca':'Address',
+      'sobre.titulo':'About us','sobre.p1':'At Ateneu Unió we welcome you to Plaça Joan Güell, in Colònia Güell, a setting full of history and modernist charm. A meeting point for families and visitors who want to enjoy homestyle cooking.',
+      'sobre.p2':'Daily menu that changes, classic tapas and hot or cold sandwiches. Terrace on the square and a calm atmosphere.',
+      'sobre.politica':'Cancellation policy: We reserve the right to cancel a booking.',
+      'sobre.comArribar':'Getting here','sobre.adreca':'Address','sobre.transport':'Transport','sobre.transportTxt':'Bus L76 · FGC (Colònia Güell stop)','sobre.abrirmapa':'Open in Google Maps',
+      'carta.titulo':'Menu','carta.sub':'The daily menu changes every day. Ask at the restaurant. Below you have tapas and sandwiches with prices.','carta.tapes':'Tapas','carta.freds':'Cold','carta.calents':'Hot','carta.croquetesPrecio':'€1.00 / unit',
+      'calents.bacon':'Bacon','calents.llom':'Loin','calents.salsitxes':'Sausages','calents.botifarra':'Butifarra','calents.xistorra':'Chistorra','calents.pit':'Chicken breast','calents.bikini':'Ham & cheese toastie','calents.bikiniMallorqui':'Mallorcan toastie',
+      'horaris.titulo':'Opening hours',
+      'dias.dilluns':'Monday','dias.dimarts':'Tuesday','dias.dimecres':'Wednesday','dias.dijous':'Thursday','dias.divendres':'Friday','dias.dissabte':'Saturday','dias.diumenge':'Sunday',
+      'reserves.titulo':'Bookings','reserves.tel':'Phone','reserves.confauto':'Automatic confirmation','reserves.noauto':'No (contact via phone or email)','reserves.btnTrucar':'Call','reserves.btnEmail':'Send email',
+      'resenas.titulo':'Reviews',
+      'rev.1':'Excellent homestyle cooking and top service. The bravas are great.','rev.2':'Very pleasant terrace on the square. We will come back.','rev.3':'Homemade croquettes and meats cooked just right. Highly recommended.',
+      'contacte.titulo':'Contact & social','contacte.verficha':'See listing','contacte.comarribar':'Getting here',
+      'legal.aviso':'Legal notice','legal.priv':'Privacy','legal.cookies':'Cookies'
+    }
+  };
+
+  function applyI18n(lang){
+    const map = dict[lang] || dict.ca;
+    $$('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); if (map[key]) el.textContent = map[key]; });
+    document.documentElement.setAttribute('lang', lang);
+    $$('.lang button').forEach(b => b.setAttribute('aria-current', String(b.dataset.lang === lang)));
+    try { localStorage.setItem('lang', lang); } catch(e) {}
+    setHoursStatus();
+  }
+
+  // Hours status
+  function setHoursStatus(){
+    const d = new Date();
+    const day = d.getDay();
+    const now = d.getHours() + d.getMinutes()/60;
+    const rows = $$('.hrow');
+    rows.forEach(r => r.classList.toggle('today', Number(r.dataset.day) === day));
+    const todayRow = rows.find(r => Number(r.dataset.day) === day);
+    let open = false;
+    if (todayRow){
+      const o = Number(todayRow.dataset.open);
+      const c = Number(todayRow.dataset.close);
+      open = now >= o && now < c;
+    }
+    const chip = $('#openChip');
+    if (chip){
+      const lang = currentLang();
+      chip.classList.toggle('open', open);
+      chip.classList.toggle('closed', !open);
+      chip.textContent = open ? (lang==='es' ? 'Abierto ahora' : lang==='en' ? 'Open now' : 'Obert ara') : (lang==='es' ? 'Cerrado ahora' : lang==='en' ? 'Closed now' : 'Tancat ara');
+    }
+  }
+
+  // Init
+  const initial = (()=>{ try { return localStorage.getItem('lang'); } catch(e){ return null; } })() || ((navigator.language||'ca').startsWith('es') ? 'es' : (navigator.language||'ca').startsWith('en') ? 'en' : 'ca');
+  applyI18n(initial);
+  $$('.lang button').forEach(btn => btn.addEventListener('click', () => applyI18n(btn.dataset.lang)));
+  setHoursStatus();
+  setInterval(setHoursStatus, 60000);
+})();
+</script>
+</body>
+</html>
