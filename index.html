@@ -161,7 +161,7 @@ main a:not(.btn){text-decoration-line:underline;text-underline-offset:3px;text-d
 
 /* ===== FOOTER / STICKY ===== */
 footer{border-top:1px solid var(--line);background:#eef0f3}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0;padding: 5%;font-size: 0.85rem;}
 .sticky-cta{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;background:#ffffff;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,0,0,.08);border-radius:999px;padding:6px 8px;z-index:40}
 .sticky-cta a{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:14px}
 .sticky-cta .call{background:var(--section);color:#fff}
@@ -172,7 +172,7 @@ footer{border-top:1px solid var(--line);background:#eef0f3}
 a:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid rgba(150,6,6,.35);outline-offset:3px;border-radius:10px}
 
 /* ===== RESPONSIVE ===== */
-@media (max-width:1100px){.tabpanels{grid-template-columns:1fr 1fr}}
+@media (max-width:1100px){.tabpanels{grid-template-columns:1fr}}
 @media (max-width:1024px){
   .gallery{grid-template-columns:repeat(2,1fr)}
 }
