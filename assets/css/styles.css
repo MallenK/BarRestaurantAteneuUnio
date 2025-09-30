@@ -1,1 +1,180 @@
 
+<style>
+:root{
+  --brand:#7F7C76;
+  --section:#960606;
+  --section-700:#7a0505;
+  --bg:#f3f4f6;
+  --card:#ffffff;
+  --ink:#161616;
+  --muted:#49525e; /* más contraste */
+  --line:#e5e7eb;
+  --band:#f9fafb;
+  /* diseño consistente */
+  --radius:14px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);
+  --shadow-md:0 8px 24px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;font-size:16.5px;line-height:1.65;letter-spacing:.1px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+section{scroll-margin-top:84px}
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.container > .card{width:100%}
+.container--wide{max-width:1360px}
+.container--narrow{max-width:820px}
+.measure{max-width:62ch}
+
+h1,h2,h3{line-height:1.2;text-wrap:balance}
+h1{font-family:"Bowlby One"}
+h2{font-weight:600}
+
+/* ===== utilidades a11y ===== */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ===== NAVBAR ===== */
+header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);z-index:30}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2%}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:var(--section);color:#fff;display:grid;place-items:center;font-family:"Bowlby One";font-size:16px}
+.brand-name{font-family:"Bowlby One";font-size:18px}
+nav a{margin-left:12px;color:inherit;text-decoration:none;font-weight:600}
+nav a.active{color:var(--section);text-decoration-line:underline;text-underline-offset:4px;text-decoration-thickness:2px}
+nav a:hover{text-decoration-line:underline;text-underline-offset:4px}
+.lang{display:flex;gap:6px;align-items:center}
+.lang button{border:1px solid var(--line);background:#fff;padding:6px 8px;border-radius:8px;font-weight:700;cursor:pointer}
+.lang button[aria-current="true"]{border-color:var(--section);color:var(--section)}
+#navToggle{display:none}
+@media (max-width:960px){
+  #navToggle{display:block;border:1px solid var(--line);border-radius:10px;background:#fff;padding:7px 10px}
+  nav{display:none;position:absolute;right:16px;top:64px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-md);padding:10px 14px}
+  nav.open{display:flex;flex-direction:column}
+  nav a{margin:6px 0}
+}
+
+/* ===== HERO ===== */
+.hero-full{position:relative;isolation:isolate}
+.hero-full::before{
+  content:"";
+  position:absolute;inset:0;
+  background:url('https://upload.wikimedia.org/wikipedia/commons/2/2c/Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%BCell%29_2014.JPG') center/cover no-repeat;
+  filter:grayscale(.1) contrast(1.05);
+}
+.hero-full::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.2),rgba(0,0,0,.35))}
+.hero{position:relative;z-index:1;display:grid;grid-template-columns:1fr;justify-items:center;align-items:center;min-height:54vh;text-align:center;color:#fff;padding:42px 0}
+.hero h1{font-size:44px;margin:0 0 6px;text-shadow:0 2px 16px rgba(0,0,0,.25)}
+.hero p{font-size:18px;margin:0 0 12px;opacity:.95}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:var(--radius);padding:12px 18px;font-weight:800;cursor:pointer;transition:transform .06s ease, background .2s, box-shadow .2s}
+.btn:active{transform:translateY(1px);filter:brightness(.97)}
+.btn-primary{background:var(--section);color:#fff;box-shadow:0 6px 18px rgba(150,6,6,.18);font-size: 0,75rem;}
+.btn-primary:hover{background:var(--section-700)}
+.btn-ghost{background:#fff;color:#111;border:2px solid var(--line)}
+
+/* ===== LINKS ===== */
+main a:not(.btn){text-decoration-line:underline;text-underline-offset:3px;text-decoration-thickness:2px}
+
+/* ===== INFO STRIP ===== */
+.infostrip{background:#fff;border-top:2px solid var(--section);border-bottom:1px solid var(--line)}
+.infostrip .inner{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:16px 0}
+.info{display:flex;gap:10px;align-items:center;background:var(--band);border:1px solid var(--line);border-left:3px solid var(--section);border-radius:var(--radius);padding:10px;box-shadow:var(--shadow-sm)}
+.info h4{margin:0;font-size:14px;color:var(--section);letter-spacing:.2px}
+.info p{margin:0;font-weight:700}
+
+/* ===== SECCIONES ===== */
+.band{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section{padding:48px 0}
+.section h2{font-family:inherit;font-size:30px;margin:0 0 10px;color:var(--section);display:inline-block;background:linear-gradient(transparent 65%, rgba(150,6,6,.18) 0);padding-bottom:2px}
+.section p.sub{color:var(--muted);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-sm)}
+.section-card{padding:20px}
+.section-card>h2{margin-top:0}
+.card--sub{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:var(--shadow-sm)}
+.subgrid{gap:16px}
+
+/* ===== FEATURES ===== */
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center}
+.feature .ic{width:28px;height:28px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:20px}
+.feature h3{margin:0;font-size:16px;font-weight:600}
+.feature p{margin:4px 0 0;color:#333;font-size:14px}
+
+/* ===== COMO LLEGAR ===== */
+.steps{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:8px}
+.step{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center}
+.step .dot{width:28px;height:28px;border-radius:50%;background:var(--section);color:#fff;display:grid;place-items:center;font-weight:800}
+.mini-map iframe{border-radius:12px;border:1px solid var(--line)}
+
+/* ===== CARTA ===== */
+.tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tab{appearance:none;border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:800;cursor:pointer}
+.tab[aria-selected="true"]{border-color:var(--section);color:#fff;background:var(--section)}
+.menu-card{padding:16px}
+.tabpanels{display:grid;grid-template-columns:1fr;gap:16px}
+.menubox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+.menubox .head{display:flex;align-items:center;gap:8px;background:linear-gradient(90deg, rgba(150,6,6,.08), transparent);padding:8px 10px;border-radius:10px;margin:-4px -4px 8px}
+.menubox .head h3{margin:0;font-size:18px;font-weight:600}
+.menu-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.menu-item{display:flex;align-items:baseline;gap:8px}
+.menu-item .name{font-weight:600}
+.menu-item .dots{flex:1;border-bottom:1px dotted var(--line);opacity:.8;transform:translateY(-4px)}
+.menu-item .price{font-weight:700;white-space:nowrap}
+.menu-item .badge{background:#fff;color:inherit;padding:2px 8px;border-radius:999px;border:1px solid var(--line)}
+
+/* ===== HORARIOS ===== */
+.hours{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.hrow{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.hrow.today{border-color:var(--section)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-weight:700;border:1px solid var(--line);font-size:.9rem}
+.chip.open{background:rgba(30,180,30,.1);color:#166534;border-color:#86efac}
+.chip.closed{background:rgba(180,30,30,.1);color:#7f1d1d;border-color:#fecaca}
+.status{display:flex;justify-content:flex-start;gap:8px;align-items:center}
+
+/* ===== GRID / TABLES ===== */
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.grid2--equal{grid-template-columns:1fr 1fr}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:0.85rem}
+.table td{background:var(--card);border:1px solid var(--line);padding:8px 10px}
+.table td:first-child{font-weight:700;width:180px}
+
+/* ===== RESEÑAS / GALERÍA ===== */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;box-shadow:var(--shadow-sm)}
+.stars{color:#d4a100;font-size:14px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;grid-auto-rows:180px}
+.gallery figure{margin:0}
+.gallery img{border-radius:12px;width:100%;height:100%;object-fit:cover;border:1px solid var(--line)}
+.gallery figure:nth-child(1) img{height:100%}
+.gallery figure:nth-child(2) img{height:100%}
+.gallery figure:nth-child(3) img{height:100%}
+.gallery figure:nth-child(4) img{height:100%}
+.gallery figcaption{font-size:12px;color:#6b7280;margin-top:4px}
+
+/* ===== FOOTER / STICKY ===== */
+footer{border-top:1px solid var(--line);background:#eef0f3}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px 0;padding: 5%;font-size: 0.85rem;}
+.sticky-cta{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:8px;background:#ffffff;border:1px solid var(--line);box-shadow:0 6px 16px rgba(0,0,0,.08);border-radius:999px;padding:6px 8px;z-index:40}
+.sticky-cta a{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;text-decoration:none;font-weight:800;font-size:14px}
+.sticky-cta .call{background:var(--section);color:#fff}
+.sticky-cta .book{background:#fff;color:#111;border:1px solid var(--line)}
+.sticky-cta .mapbtn{background:#fff;color:var(--section);border:1px solid var(--section)}
+
+/* ===== ACCESIBILIDAD ===== */
+a:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid rgba(150,6,6,.35);outline-offset:3px;border-radius:10px}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1100px){.tabpanels{grid-template-columns:1fr}}
+@media (max-width:1024px){
+  .gallery{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:960px){
+  .infostrip .inner{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr 1fr}
+  .reviews{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .hero h1{font-size:34px}
+}
+</style>
