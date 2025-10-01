@@ -1,4 +1,4 @@
-
+console.log("✅ app.js cargado correctamente");
 (() => {
   console.log("BARRESTAURANT");
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
