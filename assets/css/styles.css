@@ -1,5 +1,4 @@
 
-<style>
 :root{
   --brand:#7F7C76;
   --section:#960606;
@@ -177,4 +176,3 @@ a:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:3px solid rgba(150
 @media (max-width:640px){
   .hero h1{font-size:34px}
 }
-</style>
