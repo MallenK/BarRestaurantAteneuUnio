@@ -1,5 +1,4 @@
 
-<script>
 (() => {
   console.log("BARRESTAURANT");
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
@@ -180,4 +179,3 @@
   setHoursStatus();
   setInterval(setHoursStatus, 60000);
 })();
-</script>
