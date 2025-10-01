@@ -1,6 +1,7 @@
 
 <script>
 (() => {
+  console.log("BARRESTAURANT");
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
   const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
   const currentLang = () => document.documentElement.getAttribute('lang') || 'ca';
