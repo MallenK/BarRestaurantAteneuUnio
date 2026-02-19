@@ -1,5 +1,3 @@
-
-console.log("✅ app.js cargado correctamente");
 (() => {
   console.log("BARRESTAURANT");
   const $ = (sel, ctx=document) => ctx.querySelector(sel);
@@ -60,7 +58,7 @@ console.log("✅ app.js cargado correctamente");
     tabs.forEach(t=>{ t.setAttribute('aria-selected', String(t===tab)); t.tabIndex = t===tab ? 0 : -1; });
     panels.forEach(p=> p.hidden = (p.getAttribute('aria-labelledby') !== tab.id));
     try { sessionStorage.setItem('activeTab', tab.id); } catch(e) {}
-    tab.focus();
+    //tab.focus();
   }
   tabs.forEach(t=>{
     t.addEventListener('click', ()=>activateTab(t));
@@ -99,7 +97,13 @@ console.log("✅ app.js cargado correctamente");
       'resenas.titulo':'Reseñas',
       'rev.1':'Cuina casolana excel·lent i tracte de 10. Les braves són top.','rev.2':'Terrassa molt agradable a la plaça. Repetirem.','rev.3':'Croquetes casolanes i carns al punt. Molt recomanable.',
       'contacte.titulo':'Contacte i xarxes','contacte.verficha':'Veure fitxa','contacte.comarribar':'Com arribar',
-      'legal.aviso':'Avís legal','legal.priv':'Privacitat','legal.cookies':'Cookies'
+      'legal.aviso':'Avís legal','legal.priv':'Privacitat','legal.cookies':'Cookies',
+      'form.name':'Nom',
+      'form.phone':'Telèfon',
+      'form.guests':'Comensals',
+      'form.message':'Missatge / Petició',
+      'form.submit':'Enviar reserva',
+      'form.success':'Reserva enviada correctament ✔ Ens posarem en contacte aviat.',
     },
     es: {
       'nav.sobre':'Sobre','nav.arribar':'Cómo llegar','nav.carta':'Carta','nav.horaris':'Horarios','nav.reserves':'Reservas','nav.galeria':'Galería','nav.contacte':'Contacto',
@@ -118,7 +122,13 @@ console.log("✅ app.js cargado correctamente");
       'resenas.titulo':'Reseñas',
       'rev.1':'Cocina casera excelente y trato de 10. Las bravas, top.','rev.2':'Terraza muy agradable en la plaza. Repetiremos.','rev.3':'Croquetas caseras y carnes al punto. Muy recomendable.',
       'contacte.titulo':'Contacto y redes','contacte.verficha':'Ver ficha','contacte.comarribar':'Cómo llegar',
-      'legal.aviso':'Aviso legal','legal.priv':'Privacidad','legal.cookies':'Cookies'
+      'legal.aviso':'Aviso legal','legal.priv':'Privacidad','legal.cookies':'Cookies',
+      'form.name':'Nombre',
+      'form.phone':'Teléfono',
+      'form.guests':'Comensales',
+      'form.message':'Mensaje / Petición',
+      'form.submit':'Enviar reserva',
+      'form.success':'Reserva enviada correctamente ✔ Te contactaremos pronto.',
     },
     en: {
       'nav.sobre':'About','nav.arribar':'Getting here','nav.carta':'Menu','nav.horaris':'Hours','nav.reserves':'Bookings','nav.galeria':'Gallery','nav.contacte':'Contact',
@@ -137,7 +147,13 @@ console.log("✅ app.js cargado correctamente");
       'resenas.titulo':'Reviews',
       'rev.1':'Excellent homestyle cooking and top service. The bravas are great.','rev.2':'Very pleasant terrace on the square. We will come back.','rev.3':'Homemade croquettes and meats cooked just right. Highly recommended.',
       'contacte.titulo':'Contact & social','contacte.verficha':'See listing','contacte.comarribar':'Getting here',
-      'legal.aviso':'Legal notice','legal.priv':'Privacy','legal.cookies':'Cookies'
+      'legal.aviso':'Legal notice','legal.priv':'Privacy','legal.cookies':'Cookies',
+      'form.name':'Name',
+      'form.phone':'Phone',
+      'form.guests':'Guests',
+      'form.message':'Message / Request',
+      'form.submit':'Send booking',
+      'form.success':'Booking sent successfully ✔ We will contact you soon.',
     }
   };
 
