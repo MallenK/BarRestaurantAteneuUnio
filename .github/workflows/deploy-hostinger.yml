@@ -12,19 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 🔍 TEMP debug - sanity check secrets (no values printed)
-        env:
-          SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
-          FTPUSER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        run: |
-          echo "Server length: ${#SERVER}"
-          echo "Username length: ${#FTPUSER}"
-          echo "Server starts with ftp://  -> $( [[ "$SERVER" == ftp://* ]] && echo YES-BAD || echo no )"
-          echo "Server contains XXX        -> $( [[ "$SERVER" == *XXX* ]] && echo YES-BAD || echo no )"
-          echo "Server has whitespace      -> $( [[ "$SERVER" =~ [[:space:]] ]] && echo YES-BAD || echo no )"
-          echo "Server has quotes          -> $( [[ "$SERVER" == *\"* || "$SERVER" == *\'* ]] && echo YES-BAD || echo no )"
-          getent hosts "$SERVER" && echo "DNS/IP lookup: OK" || echo "DNS/IP lookup: FAILED"
-
       - name: Sync files to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
