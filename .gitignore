@@ -1,0 +1,7 @@
+# Local AI tooling (Claude Code skills, hooks, MCP scaffolding) — not site content
+.agents/
+.claude/
+.codex/
+.github/hooks/
+.impeccable/
+skills-lock.json

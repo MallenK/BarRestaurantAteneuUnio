@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Biblioteca de skills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F0EB; --surface:#FFFFFF; --surface-2:#FAF9F4; --border:#DCD9CE;
+    --ink:#1B2029; --muted:#6B6558; --accent:#1E7480; --accent-soft:#D8ECEE;
+    --good:#2F8A5B; --good-soft:#DFF1E6; --warn:#B4791C; --warn-soft:#F5E7CE;
+    --off:#8A8578; --off-soft:#E9E7DE;
+    --shadow:0 1px 2px rgba(27,32,41,.05), 0 6px 20px rgba(27,32,41,.06);
+  }
+  [data-theme="dark"]{
+    --bg:#12151B; --surface:#1B2029; --surface-2:#1F2530; --border:#2A3140;
+    --ink:#E7E9EE; --muted:#8B93A3; --accent:#5FC9D6; --accent-soft:#1E3438;
+    --good:#4FAE7C; --good-soft:#1C3327; --warn:#E0AC4F; --warn-soft:#3A2E17;
+    --off:#6B7280; --off-soft:#232833;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;line-height:1.5;transition:background .2s,color .2s}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important;animation-duration:.001ms !important}}
+  h1,h2{font-family:"Source Serif 4",Georgia,serif;text-wrap:balance;margin:0}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  header.top{border-bottom:1px solid var(--border);padding:40px 0 28px}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-top:8px}
+  .top-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .dek{color:var(--muted);max-width:56ch;margin-top:10px}
+  #themeToggle{
+    font-family:"Space Mono",monospace;font-size:.75rem;background:var(--surface);color:var(--ink);
+    border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;
+  }
+  #themeToggle:hover{border-color:var(--accent)}
+
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:28px 0 0;box-shadow:var(--shadow)}
+  @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--surface);padding:16px 18px}
+  .stat b{font-family:"Space Mono",monospace;font-size:1.5rem;font-variant-numeric:tabular-nums;display:block}
+  .stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .stat.activa b{color:var(--good)} .stat.condicional b{color:var(--warn)} .stat.aparcada b{color:var(--off)}
+
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:24px 0;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid transparent}
+  .controls.stuck{border-bottom-color:var(--border)}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{
+    font-family:"Space Mono",monospace;font-size:.78rem;background:var(--surface);border:1px solid var(--border);
+    color:var(--muted);padding:7px 13px;border-radius:999px;cursor:pointer;
+  }
+  .tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  input#search{
+    margin-left:auto;font-family:Archivo,sans-serif;font-size:.9rem;padding:9px 14px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);color:var(--ink);min-width:220px;
+  }
+  input#search:focus,.tab:focus-visible,#themeToggle:focus-visible,.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  #count{font-size:.82rem;color:var(--muted);margin:0 0 14px;font-family:"Space Mono",monospace}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding-bottom:80px}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow);cursor:pointer;transition:transform .12s ease, border-color .12s ease;
+  }
+  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .catno{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .badge{
+    font-family:"Space Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+    padding:3px 8px;border-radius:999px;white-space:nowrap;
+  }
+  .badge.activa{background:var(--good-soft);color:var(--good)}
+  .badge.condicional{background:var(--warn-soft);color:var(--warn)}
+  .badge.aparcada{background:var(--off-soft);color:var(--off)}
+  .card h3{font-family:"Source Serif 4",serif;font-size:1.15rem;font-weight:600;margin:8px 0 4px}
+  .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .tag{font-size:.68rem;font-family:"Space Mono",monospace;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:6px}
+  .desc{font-size:.88rem;color:var(--muted)}
+  .why{
+    font-size:.85rem;margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);color:var(--ink);
+    display:none;
+  }
+  .card.open .why{display:block}
+  .card.open{border-color:var(--accent)}
+
+  footer{border-top:1px solid var(--border);padding:24px 0 50px;color:var(--muted);font-size:.8rem;font-family:"Space Mono",monospace}
+  .empty{padding:40px 0;text-align:center;color:var(--muted);display:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-row">
+      <div>
+        <span class="eyebrow">Catálogo personal · no indexado</span>
+        <h1>Biblioteca de skills</h1>
+        <p class="dek">Registro de todas las skills, MCPs y librerías instaladas durante nuestras sesiones, con estado de uso real. Página huérfana: sin enlaces entrantes y excluida de indexación.</p>
+      </div>
+      <button id="themeToggle" type="button" aria-label="Cambiar tema">◐ tema</button>
+    </div>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Resumen"></section>
+
+  <div class="controls" id="controls">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Filtrar por estado"></div>
+    <input id="search" type="search" placeholder="Buscar por nombre o descripción…" aria-label="Buscar">
+  </div>
+
+  <p id="count"></p>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty">Sin resultados para este filtro.</p>
+
+  <footer>
+    <div class="wrap" style="padding:0">Biblioteca personal — se amplía a mano cada vez que se instala o se descarta una skill nueva.</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const ITEMS = [
+    {id:1, name:"impeccable", kind:"Skill Claude", scope:"Global", status:"activa", cat:"Orquestador", desc:"Interview de producto, PRODUCT.md ya escrito, y comandos de crítica/auditoría/pulido para llevar la batuta del rediseño.", why:"Es la única skill con flujo completo (init → new-work → critique/audit/polish); las demás alimentan pasos concretos de este flujo."},
+    {id:2, name:"redesign-existing-projects", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Taste", desc:"Audita un sitio ya existente e identifica patrones genéricos antes de subir el nivel, sin romper funcionalidad.", why:"Encaja exactamente con el caso de Ateneu Unió: partir de un sitio real, no de una hoja en blanco."},
+    {id:3, name:"imagegen-frontend-web", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Taste", desc:"Genera una imagen de composición por sección antes de programar nada.", why:"Es la skill que activa el flujo comp-first que elegiste para el proyecto."},
+    {id:4, name:"emil-design-eng", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Motion / Emil Kowalski", desc:"Filosofía general de pulido de UI: los detalles invisibles que hacen que un producto se sienta cuidado.", why:"Criterio transversal de acabado para todo el rediseño, no solo animación."},
+    {id:5, name:"apple-design", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Motion / Emil Kowalski", desc:"Física, gestos, materiales translúcidos y tipografía al estilo Apple, adaptado a web.", why:"Referencia de calidad para las micro-interacciones de la carta, tabs y CTA de reserva."},
+    {id:6, name:"animate", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Motion / Emil Kowalski", desc:"Construye una animación nueva desde cero, decidiendo si debe existir, con qué curva y duración.", why:"Se usa cuando el comp aprobado pasa a código y hace falta decidir el motion real."},
+    {id:7, name:"review-animations", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Motion / Emil Kowalski", desc:"Revisa el motion ya escrito contra un listón de calidad alto; por defecto señala fallos.", why:"Última pasada antes de dar por cerrado el motion del sitio."},
+    {id:8, name:"full-output-enforcement", kind:"Skill Claude", scope:"Proyecto", status:"activa", cat:"Utilidad", desc:"Evita que el código salga recortado o con placeholders en generaciones largas.", why:"Corre en segundo plano en cualquier tarea de código extensa; no requiere decisión propia."},
+    {id:9, name:"Playwright MCP", kind:"Servidor MCP", scope:"Global", status:"activa", cat:"Verificación", desc:"Controla un navegador real para capturar el sitio en desktop y móvil.", why:"Verifica el sitio construido contra el comp aprobado, en vez de fiarnos de la descripción."},
+
+    {id:10, name:"brandkit", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Taste", desc:"Genera tableros de identidad de marca: sistemas de logo, mockups, decks de marca.", why:"Solo entra en juego si decidimos tocar el logotipo/monograma «AU»."},
+    {id:11, name:"design-taste-frontend (v2)", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Taste", desc:"Skill anti-slop genérica para landing/portfolio; lee el brief e infiere dirección propia.", why:"Se reserva por si hace falta esa familia de reglas más adelante; no debe pisar la paleta ya acordada en el dossier."},
+    {id:12, name:"improve-animations", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Motion / Emil Kowalski", desc:"Audita todo el motion de un proyecto y entrega un plan priorizado; no lo aplica.", why:"Útil si el sitio crece y hace falta una auditoría de motion más amplia que una revisión puntual."},
+    {id:13, name:"find-animation-opportunities", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Motion / Emil Kowalski", desc:"Busca huecos donde falta animación y los rechaza si no aportan; solo propone, no implementa.", why:"Puede complementar la fase de `animate` para no dejar interacciones muertas en la carta o el formulario."},
+    {id:14, name:"animation-vocabulary", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Motion / Emil Kowalski", desc:"Diccionario inverso: describe un efecto y devuelve su nombre técnico exacto.", why:"Utilidad puntual de consulta, no forma parte del flujo de construcción."},
+    {id:15, name:"prototype", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Motion / Emil Kowalski", desc:"Construye varias versiones distintas de una pieza de UI para comparar en vivo.", why:"Solo si hay dudas reales de dirección sobre un componente concreto; se solapa con el comp-first ya elegido."},
+
+    {id:16, name:"ask-sonner", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Motion / Emil Kowalski", desc:"Guía de Sonner, la librería de toasts para React.", why:"El sitio es HTML/CSS/JS vanilla, sin React: no aplica."},
+    {id:17, name:"pick-ui-library", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Motion / Emil Kowalski", desc:"Catálogo de librerías recomendadas por tarea (inputs, gráficos, drag&drop…).", why:"La mayoría del catálogo es para stacks con framework; poco aplicable a un sitio estático."},
+    {id:18, name:"minimalist-ui", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Dirección estética fija: editorial, monocromo cálido, sin gradientes ni sombras.", why:"Compite con la dirección visual ya fijada (ladrillo/trencadís) en el dossier de Ateneu Unió."},
+    {id:19, name:"industrial-brutalist-ui", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Dirección estética fija: tipografía suiza, terminal militar, degradación analógica.", why:"No encaja con un bar-restaurante de barrio; compite con otras skills de dirección fija."},
+    {id:20, name:"gpt-taste", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Motion GSAP muy exigente, estructura AIDA obligatoria, grids bento sin huecos.", why:"Demasiado prescriptivo y agresivo para el tono cercano que necesita el proyecto."},
+    {id:21, name:"high-end-visual-design", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Reglas fijas de fuentes, sombras y spacing para que algo «parezca caro».", why:"Compite con la dirección visual ya fijada; se deja aparcada para evitar conflictos de criterio."},
+    {id:22, name:"stitch-design-taste", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Genera DESIGN.md pensado para la herramienta Google Stitch.", why:"No usamos Google Stitch en este flujo."},
+    {id:23, name:"design-taste-frontend-v1", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Versión original de design-taste-frontend, mantenida solo por compatibilidad exacta.", why:"Superada por la v2; no hay motivo para usar la v1."},
+    {id:24, name:"image-to-code", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Genera imágenes de referencia y construye el sitio a partir de ellas, pensada para Codex.", why:"Redundante con el flujo comp-first que ya cubre imagegen-frontend-web + impeccable."},
+    {id:25, name:"imagegen-frontend-mobile", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Taste", desc:"Genera conceptos de pantalla para apps nativas iOS/Android.", why:"Ateneu Unió es un sitio web, no una app nativa."},
+    {id:26, name:"framer-motion", kind:"Librería npm", scope:"Global (otros proyectos)", status:"aparcada", cat:"Librería", desc:"Librería de animación para React, instalada globalmente a petición expresa.", why:"El sitio de Ateneu Unió es JS vanilla sin React; queda reservada para otros proyectos que sí usen React."},
+  ];
+
+  const STATUS_LABEL = {activa:"En uso activo", condicional:"Condicional", aparcada:"Aparcada"};
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+  const emptyEl = document.getElementById('empty');
+  const searchEl = document.getElementById('search');
+  const tabsEl = document.getElementById('tabs');
+  const statsEl = document.getElementById('stats');
+
+  let activeStatus = 'todas';
+
+  function renderStats(){
+    const counts = {activa:0, condicional:0, aparcada:0};
+    ITEMS.forEach(i => counts[i.status]++);
+    statsEl.innerHTML = `
+      <div class="stat"><b>${ITEMS.length}</b><span>Total catalogadas</span></div>
+      <div class="stat activa"><b>${counts.activa}</b><span>En uso activo</span></div>
+      <div class="stat condicional"><b>${counts.condicional}</b><span>Condicional</span></div>
+      <div class="stat aparcada"><b>${counts.aparcada}</b><span>Aparcadas</span></div>
+      <div class="stat"><b>${new Set(ITEMS.map(i=>i.kind)).size}</b><span>Tipos de origen</span></div>
+    `;
+  }
+
+  function renderTabs(){
+    const statuses = ['todas','activa','condicional','aparcada'];
+    tabsEl.innerHTML = statuses.map(s => `
+      <button class="tab" role="tab" data-status="${s}" aria-pressed="${s===activeStatus}">
+        ${s==='todas' ? 'Todas' : STATUS_LABEL[s]}
+      </button>`).join('');
+    tabsEl.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ activeStatus = btn.dataset.status; render(); });
+    });
+  }
+
+  function render(){
+    renderTabs();
+    const q = searchEl.value.trim().toLowerCase();
+    const filtered = ITEMS.filter(i=>{
+      const statusOk = activeStatus==='todas' || i.status===activeStatus;
+      const text = (i.name+' '+i.desc+' '+i.cat+' '+i.kind).toLowerCase();
+      return statusOk && text.includes(q);
+    });
+    countEl.textContent = `${filtered.length} de ${ITEMS.length} entradas`;
+    emptyEl.style.display = filtered.length ? 'none' : 'block';
+    grid.innerHTML = filtered.map(i => `
+      <article class="card" tabindex="0" data-id="${i.id}">
+        <div class="card-head">
+          <span class="catno">N.º ${String(i.id).padStart(3,'0')}</span>
+          <span class="badge ${i.status}">${STATUS_LABEL[i.status]}</span>
+        </div>
+        <h3>${i.name}</h3>
+        <div class="meta-row"><span class="tag">${i.kind}</span><span class="tag">${i.scope}</span><span class="tag">${i.cat}</span></div>
+        <p class="desc">${i.desc}</p>
+        <p class="why">${i.why}</p>
+      </article>
+    `).join('');
+    grid.querySelectorAll('.card').forEach(card=>{
+      const toggle = ()=>card.classList.toggle('open');
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+    });
+  }
+
+  searchEl.addEventListener('input', render);
+
+  // theme toggle
+  const root = document.documentElement;
+  const saved = localStorage.getItem('lab-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeToggle').addEventListener('click', ()=>{
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : (root.getAttribute('data-theme') === 'light' ? 'light' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('lab-theme', next);
+  });
+
+  // sticky shadow on controls
+  const controls = document.getElementById('controls');
+  const io = new IntersectionObserver(([e])=>controls.classList.toggle('stuck', e.intersectionRatio < 1), {threshold:[1]});
+  const sentinel = document.createElement('div');
+  controls.parentNode.insertBefore(sentinel, controls);
+  io.observe(sentinel);
+
+  renderStats();
+  render();
+})();
+</script>
+</body>
+</html>
