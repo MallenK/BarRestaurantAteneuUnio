@@ -13,14 +13,16 @@
     --bg:#F1F0EB; --surface:#FFFFFF; --surface-2:#FAF9F4; --border:#DCD9CE;
     --ink:#1B2029; --muted:#6B6558; --accent:#1E7480; --accent-soft:#D8ECEE;
     --good:#2F8A5B; --good-soft:#DFF1E6; --warn:#B4791C; --warn-soft:#F5E7CE;
-    --off:#8A8578; --off-soft:#E9E7DE;
+    --off:#8A8578; --off-soft:#E9E7DE; --info:#2E6FA7; --info-soft:#D9E7F2;
+    --pending:#7B5EA8; --pending-soft:#EAE0F2;
     --shadow:0 1px 2px rgba(27,32,41,.05), 0 6px 20px rgba(27,32,41,.06);
   }
   [data-theme="dark"]{
     --bg:#12151B; --surface:#1B2029; --surface-2:#1F2530; --border:#2A3140;
     --ink:#E7E9EE; --muted:#8B93A3; --accent:#5FC9D6; --accent-soft:#1E3438;
     --good:#4FAE7C; --good-soft:#1C3327; --warn:#E0AC4F; --warn-soft:#3A2E17;
-    --off:#6B7280; --off-soft:#232833;
+    --off:#6B7280; --off-soft:#232833; --info:#6FB3E0; --info-soft:#1E3040;
+    --pending:#B79AD9; --pending-soft:#2E2340;
     --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
@@ -40,12 +42,14 @@
   }
   #themeToggle:hover{border-color:var(--accent)}
 
-  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:28px 0 0;box-shadow:var(--shadow)}
-  @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:28px 0 0;box-shadow:var(--shadow)}
+  @media (max-width:900px){.stats{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}}
   .stat{background:var(--surface);padding:16px 18px}
   .stat b{font-family:"Space Mono",monospace;font-size:1.5rem;font-variant-numeric:tabular-nums;display:block}
   .stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
   .stat.activa b{color:var(--good)} .stat.condicional b{color:var(--warn)} .stat.aparcada b{color:var(--off)}
+  .stat.instalando b{color:var(--info)} .stat.investigada b{color:var(--pending)}
 
   .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:24px 0;position:sticky;top:0;background:var(--bg);z-index:5;border-bottom:1px solid transparent}
   .controls.stuck{border-bottom-color:var(--border)}
@@ -78,6 +82,8 @@
   .badge.activa{background:var(--good-soft);color:var(--good)}
   .badge.condicional{background:var(--warn-soft);color:var(--warn)}
   .badge.aparcada{background:var(--off-soft);color:var(--off)}
+  .badge.instalando{background:var(--info-soft);color:var(--info)}
+  .badge.investigada{background:var(--pending-soft);color:var(--pending)}
   .card h3{font-family:"Source Serif 4",serif;font-size:1.15rem;font-weight:600;margin:8px 0 4px}
   .meta-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
   .tag{font-size:.68rem;font-family:"Space Mono",monospace;color:var(--accent);background:var(--accent-soft);padding:2px 7px;border-radius:6px}
@@ -101,7 +107,8 @@
       <div>
         <span class="eyebrow">Catálogo personal · no indexado</span>
         <h1>Biblioteca de skills</h1>
-        <p class="dek">Registro de todas las skills, MCPs y librerías instaladas durante nuestras sesiones, con estado de uso real. Página huérfana: sin enlaces entrantes y excluida de indexación.</p>
+        <p class="dek">Registro de todas las skills, MCPs, paquetes y librerías instaladas durante nuestras sesiones, con estado de uso real. Página huérfana: sin enlaces entrantes y excluida de indexación.</p>
+        <p class="dek" style="margin-top:6px"><a href="proyectos/" style="color:var(--accent)">→ Ver listado de proyectos</a></p>
       </div>
       <button id="themeToggle" type="button" aria-label="Cambiar tema">◐ tema</button>
     </div>
@@ -120,7 +127,7 @@
 
   <footer>
     <div class="wrap" style="padding:0">Biblioteca personal — se amplía a mano cada vez que se instala o se descarta una skill nueva.</div>
-    <div class="wrap" style="padding:0;margin-top:6px;opacity:.6">Marca de despliegue: 2026-08-18 · Hostinger FTP check v2 (server-dir raíz, carpeta anidada limpia)</div>
+    <div class="wrap" style="padding:0;margin-top:6px;opacity:.6">Última actualización: 2026-08-24 · sesión de instalaciones numpy/omniroute/claude-mem/one-skill-to-rule-them-all/headroom-ai</div>
   </footer>
 </div>
 
@@ -163,9 +170,16 @@
     {id:31, name:"design-system", kind:"Skill Claude", scope:"Proyecto", status:"condicional", cat:"Sistema", desc:"Arquitectura de tokens en tres capas (primitivo→semántico→componente) y especificación de componentes.", why:"Útil cuando lleguemos a extraer un design system real del sitio; complementa el comando `extract` de impeccable."},
     {id:32, name:"ui-styling", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"UI", desc:"Componentes con shadcn/ui (Radix + Tailwind) y diseños basados en canvas.", why:"Pensada para stacks con framework (React); el sitio de Ateneu Unió es HTML/CSS/JS vanilla."},
     {id:33, name:"slides", kind:"Skill Claude", scope:"Proyecto", status:"aparcada", cat:"Presentaciones", desc:"Genera presentaciones HTML con Chart.js, tokens de diseño y fórmulas de copywriting.", why:"El proyecto no necesita presentaciones/slides en ningún momento."},
+
+    {id:34, name:"numpy", kind:"Paquete Python", scope:"Global", status:"activa", cat:"Cálculo numérico", desc:"Librería de cálculo numérico y arrays para Python.", why:"Instalado con pip install numpy (v2.5.2), sesión 22–24 ago 2026."},
+    {id:35, name:"omniroute", kind:"CLI / paquete npm global", scope:"Global", status:"activa", cat:"Infraestructura IA", desc:"Router unificado de IA: 160+ proveedores, fallback automático, soporte MCP/A2A.", why:"Instalado con npm install -g omniroute (v3.8.49), sesión 22–24 ago 2026."},
+    {id:36, name:"claude-mem", kind:"Plugin Claude Code", scope:"Global", status:"activa", cat:"Memoria / contexto", desc:"Sistema de compresión de memoria: persiste contexto entre sesiones de Claude Code.", why:"Instalado con npx claude-mem install (v13.15.3), registrado como plugin en ~/.claude/plugins."},
+    {id:37, name:"one-skill-to-rule-them-all", kind:"Skill Claude", scope:"Global", status:"activa", cat:"Meta / mejora de skills", desc:"Monitoriza la ejecución de tareas para detectar patrones y oportunidades de crear o mejorar skills.", why:"Instalado por git clone en ~/.claude/skills/one-skill-to-rule-them-all/; ya aparece activa en el selector de skills de esta sesión."},
+    {id:38, name:"headroom-ai", kind:"CLI / librería Python", scope:"Global", status:"instalando", cat:"Optimización de tokens", desc:"Compresor de contexto/tokens para agentes de IA — proxy, wrapper de CLI y dashboard de ahorro.", why:"Instalación en curso (pip install \"headroom-ai[all]\"): descargando dependencias pesadas (PyTorch, transformers). Pendiente confirmar cuándo termina."},
+    {id:39, name:"MoneyPrinterTurbo", kind:"Proyecto externo", scope:"—", status:"investigada", cat:"Generación de vídeo", desc:"Generador de vídeos cortos con IA: guion, metraje, subtítulos, música y publicación automática.", why:"Solo investigada, no instalada. Opciones documentadas: Docker, manual (Python 3.11+), paquete Windows o Colab. Uso todavía pendiente — ver también la ficha en el listado de proyectos."},
   ];
 
-  const STATUS_LABEL = {activa:"En uso activo", condicional:"Condicional", aparcada:"Aparcada"};
+  const STATUS_LABEL = {activa:"En uso activo", condicional:"Condicional", aparcada:"Aparcada", instalando:"Instalando", investigada:"Solo investigada"};
   const grid = document.getElementById('grid');
   const countEl = document.getElementById('count');
   const emptyEl = document.getElementById('empty');
@@ -176,19 +190,20 @@
   let activeStatus = 'todas';
 
   function renderStats(){
-    const counts = {activa:0, condicional:0, aparcada:0};
+    const counts = {activa:0, condicional:0, aparcada:0, instalando:0, investigada:0};
     ITEMS.forEach(i => counts[i.status]++);
     statsEl.innerHTML = `
       <div class="stat"><b>${ITEMS.length}</b><span>Total catalogadas</span></div>
       <div class="stat activa"><b>${counts.activa}</b><span>En uso activo</span></div>
       <div class="stat condicional"><b>${counts.condicional}</b><span>Condicional</span></div>
       <div class="stat aparcada"><b>${counts.aparcada}</b><span>Aparcadas</span></div>
-      <div class="stat"><b>${new Set(ITEMS.map(i=>i.kind)).size}</b><span>Tipos de origen</span></div>
+      <div class="stat instalando"><b>${counts.instalando}</b><span>Instalando</span></div>
+      <div class="stat investigada"><b>${counts.investigada}</b><span>Solo investigadas</span></div>
     `;
   }
 
   function renderTabs(){
-    const statuses = ['todas','activa','condicional','aparcada'];
+    const statuses = ['todas','activa','condicional','instalando','investigada','aparcada'];
     tabsEl.innerHTML = statuses.map(s => `
       <button class="tab" role="tab" data-status="${s}" aria-pressed="${s===activeStatus}">
         ${s==='todas' ? 'Todas' : STATUS_LABEL[s]}

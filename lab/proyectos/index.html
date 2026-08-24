@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Listado de proyectos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F0EB; --surface:#FFFFFF; --surface-2:#FAF9F4; --border:#DCD9CE;
+    --ink:#1B2029; --muted:#6B6558; --accent:#1E7480; --accent-soft:#D8ECEE;
+    --idea:#8A8578; --idea-soft:#E9E7DE; --progreso:#2E6FA7; --progreso-soft:#D9E7F2;
+    --pausado:#B4791C; --pausado-soft:#F5E7CE; --lanzado:#2F8A5B; --lanzado-soft:#DFF1E6;
+    --shadow:0 1px 2px rgba(27,32,41,.05), 0 6px 20px rgba(27,32,41,.06);
+  }
+  [data-theme="dark"]{
+    --bg:#12151B; --surface:#1B2029; --surface-2:#1F2530; --border:#2A3140;
+    --ink:#E7E9EE; --muted:#8B93A3; --accent:#5FC9D6; --accent-soft:#1E3438;
+    --idea:#6B7280; --idea-soft:#232833; --progreso:#6FB3E0; --progreso-soft:#1E3040;
+    --pausado:#E0AC4F; --pausado-soft:#3A2E17; --lanzado:#4FAE7C; --lanzado-soft:#1C3327;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;line-height:1.5;transition:background .2s,color .2s}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important;animation-duration:.001ms !important}}
+  h1,h2{font-family:"Source Serif 4",Georgia,serif;text-wrap:balance;margin:0}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  header.top{border-bottom:1px solid var(--border);padding:40px 0 28px}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:clamp(1.9rem,4vw,2.6rem);margin-top:8px}
+  .top-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .dek{color:var(--muted);max-width:56ch;margin-top:10px}
+  .dek a{color:var(--accent)}
+  #themeToggle{
+    font-family:"Space Mono",monospace;font-size:.75rem;background:var(--surface);color:var(--ink);
+    border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;
+  }
+  #themeToggle:hover{border-color:var(--accent)}
+
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:28px 0 0;box-shadow:var(--shadow)}
+  @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--surface);padding:16px 18px}
+  .stat b{font-family:"Space Mono",monospace;font-size:1.5rem;font-variant-numeric:tabular-nums;display:block}
+  .stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .stat.idea b{color:var(--idea)} .stat.progreso b{color:var(--progreso)} .stat.pausado b{color:var(--pausado)} .stat.lanzado b{color:var(--lanzado)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;padding:28px 0 80px}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;
+    box-shadow:var(--shadow);
+  }
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .catno{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .badge{
+    font-family:"Space Mono",monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;
+    padding:3px 8px;border-radius:999px;white-space:nowrap;
+  }
+  .badge.idea{background:var(--idea-soft);color:var(--idea)}
+  .badge.progreso{background:var(--progreso-soft);color:var(--progreso)}
+  .badge.pausado{background:var(--pausado-soft);color:var(--pausado)}
+  .badge.lanzado{background:var(--lanzado-soft);color:var(--lanzado)}
+  .card h3{font-family:"Source Serif 4",serif;font-size:1.2rem;font-weight:600;margin:10px 0 6px}
+  .desc{font-size:.9rem;color:var(--muted);margin:0}
+  .notes{font-size:.85rem;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);color:var(--ink)}
+  .notes a{color:var(--accent)}
+
+  footer{border-top:1px solid var(--border);padding:24px 0 50px;color:var(--muted);font-size:.8rem;font-family:"Space Mono",monospace}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="top-row">
+      <div>
+        <span class="eyebrow">Catálogo personal · no indexado</span>
+        <h1>Listado de proyectos</h1>
+        <p class="dek">Ideas y proyectos personales en distintas fases, sin relación con Ateneu Unió. Página huérfana: sin enlaces entrantes y excluida de indexación.</p>
+        <p class="dek" style="margin-top:6px"><a href="../">← Volver a la biblioteca de skills</a></p>
+      </div>
+      <button id="themeToggle" type="button" aria-label="Cambiar tema">◐ tema</button>
+    </div>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Resumen"></section>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <div class="wrap" style="padding:0">Listado personal — se amplía a mano según van surgiendo o avanzando proyectos.</div>
+    <div class="wrap" style="padding:0;margin-top:6px;opacity:.6">Creado: 2026-08-24</div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  const ITEMS = [
+    {id:1, name:"Amazon Afiliados", status:"idea", desc:"Proyecto de marketing de afiliados con productos de Amazon.", notes:"Solo listado por ahora, sin nicho ni contenido definido todavía."},
+    {id:2, name:"UGC", status:"idea", desc:"Contenido generado por usuario (UGC) para redes sociales/marcas.", notes:"Solo listado por ahora, sin plataforma ni formato definido todavía."},
+    {id:3, name:"MoneyPrinterTurbo", status:"idea", desc:"Generación automática de vídeos cortos con IA: guion, metraje, subtítulos, música y publicación.", notes:"La herramienta está solo investigada, no instalada — ver ficha completa en la <a href=\"../\">biblioteca de skills</a>. Uso todavía pendiente."},
+  ];
+
+  const STATUS_LABEL = {idea:"Idea", progreso:"En progreso", pausado:"Pausado", lanzado:"Lanzado"};
+  const grid = document.getElementById('grid');
+  const statsEl = document.getElementById('stats');
+
+  function renderStats(){
+    const counts = {idea:0, progreso:0, pausado:0, lanzado:0};
+    ITEMS.forEach(i => counts[i.status]++);
+    statsEl.innerHTML = `
+      <div class="stat"><b>${ITEMS.length}</b><span>Total</span></div>
+      <div class="stat idea"><b>${counts.idea}</b><span>Idea</span></div>
+      <div class="stat progreso"><b>${counts.progreso}</b><span>En progreso</span></div>
+      <div class="stat pausado"><b>${counts.pausado}</b><span>Pausado</span></div>
+      <div class="stat lanzado"><b>${counts.lanzado}</b><span>Lanzado</span></div>
+    `;
+  }
+
+  function render(){
+    grid.innerHTML = ITEMS.map(i => `
+      <article class="card">
+        <div class="card-head">
+          <span class="catno">N.º ${String(i.id).padStart(3,'0')}</span>
+          <span class="badge ${i.status}">${STATUS_LABEL[i.status]}</span>
+        </div>
+        <h3>${i.name}</h3>
+        <p class="desc">${i.desc}</p>
+        ${i.notes ? `<p class="notes">${i.notes}</p>` : ''}
+      </article>
+    `).join('');
+  }
+
+  // theme toggle
+  const root = document.documentElement;
+  const saved = localStorage.getItem('lab-theme');
+  if (saved) root.setAttribute('data-theme', saved);
+  document.getElementById('themeToggle').addEventListener('click', ()=>{
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : (root.getAttribute('data-theme') === 'light' ? 'light' : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('lab-theme', next);
+  });
+
+  renderStats();
+  render();
+})();
+</script>
+</body>
+</html>
