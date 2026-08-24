@@ -2,4 +2,5 @@
 User-agent: *
 Allow: /
 Disallow: /lab/
+Disallow: /proyectos/
 Sitemap: https://mallenk.github.io/BarRestaurantAteneuUnio/sitemap.xml
