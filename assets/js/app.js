@@ -82,7 +82,7 @@
   const dict = {
     ca: {
       'nav.sobre':'Sobre', 'nav.arribar':'Arribar','nav.carta':'Carta','nav.horaris':'Horaris','nav.reserves':'Reserves','nav.galeria':'Galeria','nav.contacte':'Contacte',
-      'hero.eyebrow':'Vermuteria · Plaça Joan Güell','hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.',
+      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.',
       'cta.reservar':'Reserva taula','cta.vercarta':'Veure carta',
       'info.horari':'Horari','info.tel':'Telèfon','info.adreca':'Adreça',
       'sobre.titulo':'Sobre nosaltres','sobre.p1':'A l’Ateneu Unió, t’obrim les portes a la Plaça Joan Güell, al cor de la Colònia Güell, un entorn ple d’història i encant modernista. Som punt de trobada per a famílies i visitants que volen gaudir d’una cuina casolana i propera.',
@@ -94,7 +94,7 @@
       'horaris.titulo':'Horaris',
       'dias.dilluns':'Dilluns','dias.dimarts':'Dimarts','dias.dimecres':'Dimecres','dias.dijous':'Dijous','dias.divendres':'Divendres','dias.dissabte':'Dissabte','dias.diumenge':'Diumenge',
       'reserves.titulo':'Reserves','reserves.tel':'Telèfon','reserves.confauto':'Confirmació automàtica','reserves.noauto':'No (contacte per telèfon o email)','reserves.btnTrucar':'Trucar','reserves.btnEmail':'Enviar email',
-      'resenas.titulo':'Ressenyes',
+      'resenas.titulo':'Reseñas',
       'rev.1':'Cuina casolana excel·lent i tracte de 10. Les braves són top.','rev.2':'Terrassa molt agradable a la plaça. Repetirem.','rev.3':'Croquetes casolanes i carns al punt. Molt recomanable.',
       'contacte.titulo':'Contacte i xarxes','contacte.verficha':'Veure fitxa','contacte.comarribar':'Com arribar',
       'legal.aviso':'Avís legal','legal.priv':'Privacitat','legal.cookies':'Cookies',
@@ -107,7 +107,7 @@
     },
     es: {
       'nav.sobre':'Sobre','nav.arribar':'Cómo llegar','nav.carta':'Carta','nav.horaris':'Horarios','nav.reserves':'Reservas','nav.galeria':'Galería','nav.contacte':'Contacto',
-      'hero.eyebrow':'Vermutería · Plaça Joan Güell','hero.title':'Ateneu Unió · Bar Restaurante','hero.desc':'Cocina mediterránea, tapas y bocatas en el corazón de la Colonia Güell.',
+      'hero.title':'Ateneu Unió · Bar Restaurante','hero.desc':'Cocina mediterránea, tapas y bocatas en el corazón de la Colonia Güell.',
       'cta.reservar':'Reservar mesa','cta.vercarta':'Ver carta',
       'info.horari':'Horario','info.tel':'Teléfono','info.adreca':'Dirección',
       'sobre.titulo':'Sobre nosotros','sobre.p1':'En Ateneu Unió te abrimos las puertas en la Plaça Joan Güell, en la Colonia Güell, un entorno lleno de historia y encanto modernista. Punto de encuentro para familias y visitantes que quieren disfrutar de cocina casera y cercana.',
@@ -132,7 +132,7 @@
     },
     en: {
       'nav.sobre':'About','nav.arribar':'Getting here','nav.carta':'Menu','nav.horaris':'Hours','nav.reserves':'Bookings','nav.galeria':'Gallery','nav.contacte':'Contact',
-      'hero.eyebrow':'Vermouth bar · Plaça Joan Güell','hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Mediterranean food, tapas and sandwiches in the heart of Colònia Güell.',
+      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Mediterranean food, tapas and sandwiches in the heart of Colònia Güell.',
       'cta.reservar':'Book a table','cta.vercarta':'See menu',
       'info.horari':'Hours','info.tel':'Phone','info.adreca':'Address',
       'sobre.titulo':'About us','sobre.p1':'At Ateneu Unió we welcome you to Plaça Joan Güell, in Colònia Güell, a setting full of history and modernist charm. A meeting point for families and visitors who want to enjoy homestyle cooking.',
