@@ -72,6 +72,12 @@ nav a:hover{color:var(--red)}
 .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
 
 /* ===== INFO STRIP ===== */
+.press-strip{background:var(--ink);border-bottom:1px solid var(--ink)}
+.press-line{margin:0;padding:12px 0;font-size:11px;letter-spacing:.04em;color:var(--paper);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.press-line .bracket{color:var(--red);font-weight:600}
+.press-line a{color:var(--paper);text-decoration:underline;text-underline-offset:3px}
+.press-line a:hover{color:var(--red)}
+
 .infostrip{border-bottom:1px solid var(--ink)}
 .infostrip .inner{display:grid;grid-template-columns:repeat(3,1fr)}
 .info{display:flex;gap:12px;align-items:center;padding:16px 24px;border-left:1px solid var(--ink)}
