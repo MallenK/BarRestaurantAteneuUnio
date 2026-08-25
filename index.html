@@ -124,18 +124,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>Bar Restaurant Ateneu Unió · Colònia Güell | Tapes i cuina mediterrània</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
-<div class="awning" aria-hidden="true">
-  <span style="background:#F4E9D6"></span><span style="background:#C0603A"></span><span style="background:#F4E9D6"></span><span style="background:#C0603A"></span><span style="background:#F4E9D6"></span><span style="background:#C0603A"></span><span style="background:#F4E9D6"></span><span style="background:#C0603A"></span><span style="background:#F4E9D6"></span><span style="background:#C0603A"></span><span style="background:#F4E9D6"></span><span style="background:#C0603A"></span>
-</div>
-
 
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WNZVR8RG"
@@ -168,8 +163,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- HERO -->
 <div class="hero-full">
-  <section class="container hero">
-    <div class="measure">
+  <section class="container hero-split">
+    <div class="hero-left">
       <span class="eyebrow" data-i18n="hero.eyebrow">Plaça Joan Güell · Colònia Güell</span>
       <h1 data-i18n="hero.title">Ateneu Unió · Bar Restaurant</h1>
       <p data-i18n="hero.desc">Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.</p>
@@ -177,6 +172,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-primary" href="#reserves" data-i18n="cta.reservar">Reserva taula</a>
         <a class="btn btn-ghost" href="#carta" data-i18n="cta.vercarta">Veure carta</a>
       </div>
+    </div>
+    <div class="hero-pills" aria-hidden="true">
+      <div class="bezel"><div class="bezel-core" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/2/2c/Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%BCell%29_2014.JPG')"><span data-i18n="hero.pill1">La terrassa</span></div></div>
+      <div class="bezel"><div class="bezel-core" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/e/e2/Cripta_de_la_Col%C3%B2nia_G%C3%BCell_exterior_1991.jpg')"><span data-i18n="hero.pill2">Cripta Gaudí, a 5 min</span></div></div>
     </div>
   </section>
 </div>
@@ -192,7 +191,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- SOBRE -->
 <section id="sobre" class="container section">
-    <div class="card section-card">
+    <div class="card section-card reveal">
       <h2 data-i18n="sobre.titulo">Sobre nosaltres</h2>
       <div class="features">
         <div class="feature"><div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4c6 2 10 2 16 0M4 12h16M4 20c6-2 10-2 16 0" stroke-linecap="round"/></svg></div><div><h3>Pastes casolanes</h3><p>Salses de temporada i receptes pròpies.</p></div></div>
@@ -208,7 +207,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- COM ARRIBAR -->
 <section id="arribar" class="container section">
-  <div class="card section-card">
+  <div class="card section-card reveal">
     <h2 data-i18n="sobre.comArribar">Com arribar</h2>
     <div class="grid2 grid2--equal subgrid">
       <div class="card--sub">
@@ -228,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- CARTA -->
 <section id="carta" class="container section">
-  <div class="card section-card">
+  <div class="card section-card reveal">
     <h2 data-i18n="carta.titulo">Carta</h2>
     <p class="sub measure" data-i18n="carta.sub">El menú del dia es modifica cada dia. Consulta’l al restaurant. A continuació, tapes i bocates amb preus.</p>
 
@@ -289,7 +288,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- HORARIS -->
-<section id="horaris" class="container section"><div class="card section-card">
+<section id="horaris" class="container section"><div class="card section-card reveal">
     <h2 data-i18n="horaris.titulo">Horaris</h2>
     <div class="status"><span id="openChip" class="chip closed">Tancat ara</span></div>
     <ul class="hours" id="hoursList">
@@ -304,7 +303,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div></section>
 
 <!-- RESEÑAS -->
-<section id="resenas" class="container section"><div class="card section-card">
+<section id="resenas" class="container section"><div class="card section-card reveal">
     <h2 data-i18n="resenas.titulo">Ressenyes</h2>
     <div class="reviews" aria-label="Opinions de clients">
       <div class="review"><div class="stars" aria-hidden="true">★★★★★</div><p data-i18n="rev.1">Cuina casolana excel·lent i tracte de 10. Les braves són top.</p><small>Marta R. · 2024-06-12</small></div>
@@ -315,7 +314,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- GALERIA -->
 <section id="galeria" class="container section" aria-label="Galeria d'imatges de la Colònia Güell">
-  <div class="card section-card">
+  <div class="card section-card reveal">
     <div class="gallery">
       <figure>
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Ateneu_Uni%C3%B3_%28Col%C3%B2nia_G%C3%BCell%29_2014.JPG"
@@ -382,7 +381,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="contact-grid">
 
     <!-- CARD INFO -->
-    <div id="reserves" class="card contact-card">
+    <div id="reserves" class="card contact-card reveal">
 
       <h2 class="card-title" data-i18n="reserves.titulo"></h2>
 
@@ -416,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
     <!-- CARD FORM -->
-    <div class="card contact-card">
+    <div class="card contact-card reveal">
       <h2 class="card-title" data-i18n="contacte.titulo"></h2>
 
       <div class="social-links d-flex flex-wrap gap-2 mt-2">
