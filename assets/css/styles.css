@@ -188,8 +188,9 @@ nav a:hover{color:var(--red)}
 
 .field{display:flex;flex-direction:column;gap:0;border-bottom:1px solid #444;padding:12px 0}
 .field label{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:4px}
-.field input,.field textarea{padding:6px 0;border-radius:0;border:0;font-size:14px;background:transparent;color:var(--paper);font-family:"Archivo",sans-serif}
+.field input,.field textarea{padding:6px 0;border-radius:0;border:0;font-size:14px;background:transparent;color:var(--paper);font-family:"Archivo",sans-serif;transition:border-color .15s}
 .field input:focus,.field textarea:focus{outline:none}
+.field input[style*="borderColor:#E61919"],.field textarea[style*="borderColor:#E61919"]{border-color:#E61919!important;border-bottom-width:2px!important}
 textarea{resize:vertical;min-height:80px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:0}
 .form-actions{display:flex;gap:0;flex-wrap:wrap;margin-top:16px}
