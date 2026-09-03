@@ -39,26 +39,28 @@ form.addEventListener("submit", function(e){
   submit.disabled = true;
   submit.textContent = '…';
 
-  emailjs.sendForm(
-    "service_46idejm",
-    "template_zxder7m",
-    this
-  ).then(()=>{
+  fetch('contact.php', {
+    method: 'POST',
+    body: new FormData(form)
+  })
+    .then(res => res.json().catch(()=>({success:false})).then(data => ({ok: res.ok, data})))
+    .then(({ok, data}) => {
+      if (!ok || !data.success) throw new Error(data.error || 'send_failed');
 
-    // evento GA4
-    gtag('event','generate_lead',{
-      form_type:'reservation'
+      // evento GA4
+      if (typeof gtag === 'function') {
+        gtag('event','generate_lead',{ form_type:'reservation' });
+      }
+
+      success.style.display = "block";
+      form.reset();
+    })
+    .catch(err => {
+      console.error("Contact form error:", err);
+      errorSend.hidden = false;
+    })
+    .finally(() => {
+      submit.disabled = false;
+      submit.textContent = submitLabel;
     });
-
-    success.style.display = "block";
-    form.reset();
-
-  }, err=>{
-    console.error("EmailJS error:", err);
-    errorSend.hidden = false;
-
-  }).finally(()=>{
-    submit.disabled = false;
-    submit.textContent = submitLabel;
-  });
 });
