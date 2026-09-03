@@ -6,61 +6,85 @@ const errorIncomplete = document.getElementById("formErrorIncomplete");
 const submit = form.querySelector('button[type="submit"]');
 const submitLabel = submit.textContent;
 
+// Timestamp de carga del formulario: se usa como señal anti-bot básica
+// (un envío en menos de ~1.5s desde que se pintó la página es casi
+// siempre un script, no una persona rellenando el formulario).
+const formLoadedAt = Date.now();
+
 function resetMessages(){
   success.style.display = 'none';
   errorSend.hidden = true;
   errorIncomplete.hidden = true;
 }
 
-form.addEventListener("submit", function(e){
-  e.preventDefault();
-  resetMessages();
+function validateForm(){
+  // Primero, validación nativa del navegador (pattern, minlength, type=tel, etc.)
+  const nativelyValid = form.checkValidity();
 
-  // Validar campos requeridos
+  // Además, marcamos visualmente qué campos concretos fallan
   const fields = ['user_name', 'user_phone', 'date', 'time', 'guests', 'message'];
-  let valid = true;
+  let valid = nativelyValid;
   fields.forEach(name => {
     const el = form.querySelector(`[name="${name}"]`);
     const wrapper = el ? el.closest('.field') : null;
-    if (!el || !el.value.trim()) {
-      if (wrapper) wrapper.classList.add('field-error');
-      valid = false;
-    } else if (wrapper) {
-      wrapper.classList.remove('field-error');
-    }
+    if (!wrapper) return;
+    const fieldValid = el.value.trim() !== '' && el.checkValidity();
+    wrapper.classList.toggle('field-error', !fieldValid);
+    if (!fieldValid) valid = false;
   });
 
-  if (!valid) {
+  if (!nativelyValid) form.reportValidity();
+  return valid;
+}
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  resetMessages();
+
+  if (!validateForm()) {
     errorIncomplete.hidden = false;
     return;
   }
 
-  // Desabilitar botón + mostrar estado
   submit.disabled = true;
   submit.textContent = '…';
 
-  fetch('contact.php', {
-    method: 'POST',
-    body: new FormData(form)
-  })
-    .then(res => res.json().catch(()=>({success:false})).then(data => ({ok: res.ok, data})))
-    .then(({ok, data}) => {
-      if (!ok || !data.success) throw new Error(data.error || 'send_failed');
+  // Cortamos la petición si el servidor no responde en 15s, para que el
+  // botón nunca se quede bloqueado indefinidamente.
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
 
-      // evento GA4
-      if (typeof gtag === 'function') {
-        gtag('event','generate_lead',{ form_type:'reservation' });
-      }
+  try {
+    const fd = new FormData(form);
+    fd.append('elapsed_ms', String(Date.now() - formLoadedAt));
 
-      success.style.display = "block";
-      form.reset();
-    })
-    .catch(err => {
-      console.error("Contact form error:", err);
-      errorSend.hidden = false;
-    })
-    .finally(() => {
-      submit.disabled = false;
-      submit.textContent = submitLabel;
+    const res = await fetch('contact.php', {
+      method: 'POST',
+      body: fd,
+      signal: controller.signal
     });
+
+    let data;
+    try { data = await res.json(); } catch(_) { data = { success: false }; }
+
+    if (!res.ok || !data.success) {
+      throw new Error(data.error || 'send_failed');
+    }
+
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', { form_type: 'reservation' });
+    }
+
+    success.style.display = 'block';
+    form.reset();
+
+  } catch (err) {
+    console.error('Contact form error:', err);
+    errorSend.hidden = false;
+
+  } finally {
+    clearTimeout(timeout);
+    submit.disabled = false;
+    submit.textContent = submitLabel;
+  }
 });
