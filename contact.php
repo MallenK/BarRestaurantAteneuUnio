@@ -104,8 +104,8 @@ if (!preg_match('/^\d{2}:\d{2}$/', $time)) {
     fail(400, 'invalid_time');
 }
 
-// Comensales: entero entre 1 y 20
-if (!ctype_digit((string)$guests) || (int)$guests < 1 || (int)$guests > 20) {
+// Comensales: entero entre 1 y 100
+if (!ctype_digit((string)$guests) || (int)$guests < 1 || (int)$guests > 100) {
     fail(400, 'invalid_guests');
 }
 $guests = (int)$guests;
