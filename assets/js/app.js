@@ -51,32 +51,6 @@
   $('#year').textContent = new Date().getFullYear();
 
   // Tabs (ARIA)
-  const tablist = document.querySelector('[role="tablist"]');
-  const tabs = $$('[role="tab"]', tablist);
-  const panels = $$('[role="tabpanel"]');
-  function activateTab(tab){
-    tabs.forEach(t=>{ t.setAttribute('aria-selected', String(t===tab)); t.tabIndex = t===tab ? 0 : -1; });
-    panels.forEach(p=> p.hidden = (p.getAttribute('aria-labelledby') !== tab.id));
-    try { sessionStorage.setItem('activeTab', tab.id); } catch(e) {}
-    //tab.focus();
-  }
-  tabs.forEach(t=>{
-    t.addEventListener('click', ()=>activateTab(t));
-    t.addEventListener('keydown', e=>{
-      const i = tabs.indexOf(document.activeElement);
-      if (e.key==='ArrowRight') { e.preventDefault(); activateTab(tabs[(i+1)%tabs.length]); }
-      if (e.key==='ArrowLeft')  { e.preventDefault(); activateTab(tabs[(i-1+tabs.length)%tabs.length]); }
-      if (e.key==='Home') { e.preventDefault(); activateTab(tabs[0]); }
-      if (e.key==='End')  { e.preventDefault(); activateTab(tabs[tabs.length-1]); }
-    });
-  });
-  const saved = (()=>{ try { return sessionStorage.getItem('activeTab'); } catch(e){ return null; } })();
-  if (saved) {
-    const t = document.getElementById(saved);
-    if (t) activateTab(t);
-  } else {
-    activateTab(document.getElementById('tab-tapes'));
-  }
 
   // i18n
   const dict = {

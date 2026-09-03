@@ -244,57 +244,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 data-i18n="carta.titulo">Carta</h2>
     <p class="sub measure" data-i18n="carta.sub">El menú del dia es modifica cada dia. Consulta’l al restaurant. A continuació, tapes i bocates amb preus.</p>
 
-    <div class="menu-card">
-      <div role="tablist" aria-label="Categories" class="tabs">
-        <button role="tab" class="tab" aria-selected="true" aria-controls="panel-tapes" id="tab-tapes" data-i18n="carta.tapes">Tapes</button>
-        <button role="tab" class="tab" aria-selected="false" aria-controls="panel-freds" id="tab-freds" data-i18n="carta.freds">Freds</button>
-        <button role="tab" class="tab" aria-selected="false" aria-controls="panel-calents" id="tab-calents" data-i18n="carta.calents">Calents</button>
+    <div class="menu-grid">
+      <!-- TAPES -->
+      <div class="menubox">
+        <div class="head"><h3 data-i18n="carta.tapes">Tapes</h3></div>
+        <ul class="menu-list">
+          <li class="menu-item"><span class="name">Olives</span><span class="dots" aria-hidden="true"></span><span class="price badge">2,00 €</span></li>
+          <li class="menu-item"><span class="name">Braves</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name">Morros</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+          <li class="menu-item"><span class="name">Seitons</span><span class="dots" aria-hidden="true"></span><span class="price badge">7,00 €</span></li>
+          <li class="menu-item"><span class="name">Anxoves</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,00 €</span></li>
+          <li class="menu-item"><span class="name">Tires de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">9,00 €</span></li>
+          <li class="menu-item"><span class="name">Croquetes</span><span class="dots" aria-hidden="true"></span><span class="price badge" data-i18n="carta.croquetesPrecio">1,00 € / unitat</span></li>
+          <li class="menu-item"><span class="name">Calamars a la romana</span><span class="dots" aria-hidden="true"></span><span class="price badge">10,00 €</span></li>
+          <li class="menu-item"><span class="name">Potes de calamar</span><span class="dots" aria-hidden="true"></span><span class="price badge">12,00 €</span></li>
+          <li class="menu-item"><span class="name">Escopinyes</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,50 €</span></li>
+        </ul>
       </div>
 
-      <div class="tabpanels">
-        <div id="panel-tapes" role="tabpanel" aria-labelledby="tab-tapes" class="menubox">
-          <div class="head"><h3 data-i18n="carta.tapes">Tapes</h3></div>
-          <ul class="menu-list">
-            <li class="menu-item"><span class="name">Olives</span><span class="dots" aria-hidden="true"></span><span class="price badge">2,00 €</span></li>
-            <li class="menu-item"><span class="name">Braves</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name">Morros</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
-            <li class="menu-item"><span class="name">Seitons</span><span class="dots" aria-hidden="true"></span><span class="price badge">7,00 €</span></li>
-            <li class="menu-item"><span class="name">Anxoves</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,00 €</span></li>
-            <li class="menu-item"><span class="name">Tires de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">9,00 €</span></li>
-            <li class="menu-item"><span class="name">Croquetes</span><span class="dots" aria-hidden="true"></span><span class="price badge" data-i18n="carta.croquetesPrecio">1,00 € / unitat</span></li>
-            <li class="menu-item"><span class="name">Calamars a la romana</span><span class="dots" aria-hidden="true"></span><span class="price badge">10,00 €</span></li>
-            <li class="menu-item"><span class="name">Potes de calamar</span><span class="dots" aria-hidden="true"></span><span class="price badge">12,00 €</span></li>
-            <li class="menu-item"><span class="name">Escopinyes</span><span class="dots" aria-hidden="true"></span><span class="price badge">8,50 €</span></li>
-          </ul>
-        </div>
+      <!-- FREDS -->
+      <div class="menubox">
+        <div class="head"><h3 data-i18n="carta.freds">Freds</h3></div>
+        <ul class="menu-list">
+          <li class="menu-item"><span class="name">Fuet</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+          <li class="menu-item"><span class="name">Xoriço</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+          <li class="menu-item"><span class="name">Pernil dolç</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+          <li class="menu-item"><span class="name">Pernil del país</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name">Formatge semi-curat</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name">Bull blanc</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+          <li class="menu-item"><span class="name">Bull negre</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+          <li class="menu-item"><span class="name">Tonyina</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+        </ul>
+      </div>
 
-        <div id="panel-freds" role="tabpanel" aria-labelledby="tab-freds" class="menubox" hidden>
-          <div class="head"><h3 data-i18n="carta.freds">Freds</h3></div>
-          <ul class="menu-list">
-            <li class="menu-item"><span class="name">Fuet</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
-            <li class="menu-item"><span class="name">Xoriço</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
-            <li class="menu-item"><span class="name">Pernil dolç</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
-            <li class="menu-item"><span class="name">Pernil del país</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name">Formatge semi-curat</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name">Bull blanc</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
-            <li class="menu-item"><span class="name">Bull negre</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
-            <li class="menu-item"><span class="name">Tonyina</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
-          </ul>
-        </div>
-
-        <div id="panel-calents" role="tabpanel" aria-labelledby="tab-calents" class="menubox" hidden>
-          <div class="head"><h3 data-i18n="carta.calents">Calents</h3></div>
-          <ul class="menu-list">
-            <li class="menu-item"><span class="name" data-i18n="calents.bacon">Bacó</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.llom">Llom</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.salsitxes">Saltxixes</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.botifarra">Botifarra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.xistorra">Xistorra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.pit">Pit de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.bikini">Bikini</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
-            <li class="menu-item"><span class="name" data-i18n="calents.bikiniMallorqui">Bikini Mallorquí</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
-          </ul>
-        </div>
+      <!-- CALENTS -->
+      <div class="menubox">
+        <div class="head"><h3 data-i18n="carta.calents">Calents</h3></div>
+        <ul class="menu-list">
+          <li class="menu-item"><span class="name" data-i18n="calents.bacon">Bacó</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.llom">Llom</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.salsitxes">Saltxixes</span><span class="dots" aria-hidden="true"></span><span class="price badge">5,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.botifarra">Botifarra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.xistorra">Xistorra</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.pit">Pit de pollastre</span><span class="dots" aria-hidden="true"></span><span class="price badge">6,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.bikini">Bikini</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,00 €</span></li>
+          <li class="menu-item"><span class="name" data-i18n="calents.bikiniMallorqui">Bikini Mallorquí</span><span class="dots" aria-hidden="true"></span><span class="price badge">4,50 €</span></li>
+        </ul>
       </div>
     </div>
   </div>
