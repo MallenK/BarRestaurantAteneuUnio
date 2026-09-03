@@ -51,39 +51,14 @@
   $('#year').textContent = new Date().getFullYear();
 
   // Tabs (ARIA)
-  const tablist = document.querySelector('[role="tablist"]');
-  const tabs = $$('[role="tab"]', tablist);
-  const panels = $$('[role="tabpanel"]');
-  function activateTab(tab){
-    tabs.forEach(t=>{ t.setAttribute('aria-selected', String(t===tab)); t.tabIndex = t===tab ? 0 : -1; });
-    panels.forEach(p=> p.hidden = (p.getAttribute('aria-labelledby') !== tab.id));
-    try { sessionStorage.setItem('activeTab', tab.id); } catch(e) {}
-    //tab.focus();
-  }
-  tabs.forEach(t=>{
-    t.addEventListener('click', ()=>activateTab(t));
-    t.addEventListener('keydown', e=>{
-      const i = tabs.indexOf(document.activeElement);
-      if (e.key==='ArrowRight') { e.preventDefault(); activateTab(tabs[(i+1)%tabs.length]); }
-      if (e.key==='ArrowLeft')  { e.preventDefault(); activateTab(tabs[(i-1+tabs.length)%tabs.length]); }
-      if (e.key==='Home') { e.preventDefault(); activateTab(tabs[0]); }
-      if (e.key==='End')  { e.preventDefault(); activateTab(tabs[tabs.length-1]); }
-    });
-  });
-  const saved = (()=>{ try { return sessionStorage.getItem('activeTab'); } catch(e){ return null; } })();
-  if (saved) {
-    const t = document.getElementById(saved);
-    if (t) activateTab(t);
-  } else {
-    activateTab(document.getElementById('tab-tapes'));
-  }
 
   // i18n
   const dict = {
     ca: {
       'nav.sobre':'Sobre', 'nav.arribar':'Arribar','nav.carta':'Carta','nav.horaris':'Horaris','nav.reserves':'Reserves','nav.galeria':'Galeria','nav.contacte':'Contacte',
-      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.',
+      'hero.eyebrow':'Plaça Joan Güell · Colònia Güell','hero.pill1':'La terrassa','hero.pill2':'Cripta Gaudí, a 5 min','hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Cuina mediterrània, tapes i bocates al cor de la Colònia Güell.',
       'cta.reservar':'Reserva taula','cta.vercarta':'Veure carta',
+      'press.label':'A la pantalla','press.text':'La Colònia Güell ha estat escenari de rodatges publicitaris:',
       'info.horari':'Horari','info.tel':'Telèfon','info.adreca':'Adreça',
       'sobre.titulo':'Sobre nosaltres','sobre.p1':'A l’Ateneu Unió, t’obrim les portes a la Plaça Joan Güell, al cor de la Colònia Güell, un entorn ple d’història i encant modernista. Som punt de trobada per a famílies i visitants que volen gaudir d’una cuina casolana i propera.',
       'sobre.p2':'Menú del dia variable, tapes clàssiques i bocates freds i calents. Terrassa a la plaça i ambient tranquil.',
@@ -94,7 +69,7 @@
       'horaris.titulo':'Horaris',
       'dias.dilluns':'Dilluns','dias.dimarts':'Dimarts','dias.dimecres':'Dimecres','dias.dijous':'Dijous','dias.divendres':'Divendres','dias.dissabte':'Dissabte','dias.diumenge':'Diumenge',
       'reserves.titulo':'Reserves','reserves.tel':'Telèfon','reserves.confauto':'Confirmació automàtica','reserves.noauto':'No (contacte per telèfon o email)','reserves.btnTrucar':'Trucar','reserves.btnEmail':'Enviar email',
-      'resenas.titulo':'Reseñas',
+      'resenas.titulo':'Ressenyes',
       'rev.1':'Cuina casolana excel·lent i tracte de 10. Les braves són top.','rev.2':'Terrassa molt agradable a la plaça. Repetirem.','rev.3':'Croquetes casolanes i carns al punt. Molt recomanable.',
       'contacte.titulo':'Contacte i xarxes','contacte.verficha':'Veure fitxa','contacte.comarribar':'Com arribar',
       'legal.aviso':'Avís legal','legal.priv':'Privacitat','legal.cookies':'Cookies',
@@ -107,8 +82,9 @@
     },
     es: {
       'nav.sobre':'Sobre','nav.arribar':'Cómo llegar','nav.carta':'Carta','nav.horaris':'Horarios','nav.reserves':'Reservas','nav.galeria':'Galería','nav.contacte':'Contacto',
-      'hero.title':'Ateneu Unió · Bar Restaurante','hero.desc':'Cocina mediterránea, tapas y bocatas en el corazón de la Colonia Güell.',
+      'hero.eyebrow':'Plaça Joan Güell · Colonia Güell','hero.pill1':'La terraza','hero.pill2':'Cripta Gaudí, a 5 min','hero.title':'Ateneu Unió · Bar Restaurante','hero.desc':'Cocina mediterránea, tapas y bocatas en el corazón de la Colonia Güell.',
       'cta.reservar':'Reservar mesa','cta.vercarta':'Ver carta',
+      'press.label':'En pantalla','press.text':'La Colonia Güell ha sido escenario de rodajes publicitarios:',
       'info.horari':'Horario','info.tel':'Teléfono','info.adreca':'Dirección',
       'sobre.titulo':'Sobre nosotros','sobre.p1':'En Ateneu Unió te abrimos las puertas en la Plaça Joan Güell, en la Colonia Güell, un entorno lleno de historia y encanto modernista. Punto de encuentro para familias y visitantes que quieren disfrutar de cocina casera y cercana.',
       'sobre.p2':'Menú del día variable, tapas clásicas y bocatas fríos y calientes. Terraza en la plaza y ambiente tranquilo.',
@@ -132,8 +108,9 @@
     },
     en: {
       'nav.sobre':'About','nav.arribar':'Getting here','nav.carta':'Menu','nav.horaris':'Hours','nav.reserves':'Bookings','nav.galeria':'Gallery','nav.contacte':'Contact',
-      'hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Mediterranean food, tapas and sandwiches in the heart of Colònia Güell.',
+      'hero.eyebrow':'Plaça Joan Güell · Colònia Güell','hero.pill1':'The terrace','hero.pill2':'Gaudí Crypt, 5 min away','hero.title':'Ateneu Unió · Bar Restaurant','hero.desc':'Mediterranean food, tapas and sandwiches in the heart of Colònia Güell.',
       'cta.reservar':'Book a table','cta.vercarta':'See menu',
+      'press.label':'On screen','press.text':'Colònia Güell has been a filming location for advertising shoots:',
       'info.horari':'Hours','info.tel':'Phone','info.adreca':'Address',
       'sobre.titulo':'About us','sobre.p1':'At Ateneu Unió we welcome you to Plaça Joan Güell, in Colònia Güell, a setting full of history and modernist charm. A meeting point for families and visitors who want to enjoy homestyle cooking.',
       'sobre.p2':'Daily menu that changes, classic tapas and hot or cold sandwiches. Terrace on the square and a calm atmosphere.',
@@ -195,4 +172,21 @@
   $$('.lang button').forEach(btn => btn.addEventListener('click', () => applyI18n(btn.dataset.lang)));
   setHoursStatus();
   setInterval(setHoursStatus, 60000);
+
+  // Scroll reveal
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = $$('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else {
+    const revealIO = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    revealEls.forEach(el => revealIO.observe(el));
+  }
 })();
