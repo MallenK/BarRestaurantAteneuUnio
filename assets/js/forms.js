@@ -1,53 +1,43 @@
 
 const form = document.getElementById("bookingForm");
 const success = document.getElementById("formSuccess");
+const errorSend = document.getElementById("formErrorSend");
+const errorIncomplete = document.getElementById("formErrorIncomplete");
 const submit = form.querySelector('button[type="submit"]');
-const errorMsg = document.createElement('div');
-errorMsg.id = 'formError';
-errorMsg.style.display = 'none';
-errorMsg.style.marginTop = '16px';
-errorMsg.style.padding = '12px';
-errorMsg.style.borderRadius = '0';
-errorMsg.style.background = '#f8d7da';
-errorMsg.style.border = '1px solid #E61919';
-errorMsg.style.color = '#721c24';
-errorMsg.style.textAlign = 'center';
-errorMsg.style.fontFamily = '"IBM Plex Mono", monospace';
-errorMsg.style.fontSize = '12px';
-errorMsg.style.textTransform = 'uppercase';
-form.appendChild(errorMsg);
+const submitLabel = submit.textContent;
+
+function resetMessages(){
+  success.style.display = 'none';
+  errorSend.hidden = true;
+  errorIncomplete.hidden = true;
+}
 
 form.addEventListener("submit", function(e){
   e.preventDefault();
+  resetMessages();
 
   // Validar campos requeridos
-  const fields = ['name', 'phone', 'date', 'time', 'guests', 'message'];
+  const fields = ['user_name', 'user_phone', 'date', 'time', 'guests', 'message'];
   let valid = true;
-  fields.forEach(f => {
-    const el = form.querySelector(`[name="user_${f}"], [name="${f}"]`);
+  fields.forEach(name => {
+    const el = form.querySelector(`[name="${name}"]`);
+    const wrapper = el ? el.closest('.field') : null;
     if (!el || !el.value.trim()) {
-      el.style.borderColor = '#E61919';
-      el.style.borderWidth = '1px';
-      el.style.borderBottomWidth = '2px';
+      if (wrapper) wrapper.classList.add('field-error');
       valid = false;
-    } else {
-      el.style.borderColor = '';
-      el.style.borderBottomWidth = '';
+    } else if (wrapper) {
+      wrapper.classList.remove('field-error');
     }
   });
 
   if (!valid) {
-    errorMsg.textContent = 'Completa tots els camps, per favor.';
-    errorMsg.style.display = 'block';
-    success.style.display = 'none';
+    errorIncomplete.hidden = false;
     return;
   }
 
   // Desabilitar botón + mostrar estado
   submit.disabled = true;
-  submit.textContent = 'Enviant...';
-  errorMsg.style.display = 'none';
-  success.style.display = 'none';
+  submit.textContent = '…';
 
   emailjs.sendForm(
     "service_46idejm",
@@ -60,18 +50,15 @@ form.addEventListener("submit", function(e){
       form_type:'reservation'
     });
 
-    success.style.display="block";
-    errorMsg.style.display = 'none';
+    success.style.display = "block";
     form.reset();
-    submit.disabled = false;
-    submit.textContent = form.querySelector('button[type="submit"]').getAttribute('data-i18n') ? 'Enviar' : 'Submit';
 
   }, err=>{
     console.error("EmailJS error:", err);
-    errorMsg.textContent = 'Error en l\'envament. Prova de nou o truquem al ' + '931 253 062';
-    errorMsg.style.display = 'block';
-    success.style.display = 'none';
+    errorSend.hidden = false;
+
+  }).finally(()=>{
     submit.disabled = false;
-    submit.textContent = form.querySelector('button[type="submit"]').getAttribute('data-i18n') ? 'Enviar' : 'Submit';
+    submit.textContent = submitLabel;
   });
 });

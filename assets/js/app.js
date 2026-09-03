@@ -79,6 +79,8 @@
       'form.message':'Missatge / Petició',
       'form.submit':'Enviar reserva',
       'form.success':'Reserva enviada correctament ✔ Ens posarem en contacte aviat.',
+      'form.error':'No s\'ha pogut enviar la reserva ✕ Torna-ho a provar o truca\'ns al 931 253 062.',
+      'form.incomplete':'Falten camps per omplir. Revisa\'ls, si us plau.',
     },
     es: {
       'nav.sobre':'Sobre','nav.arribar':'Cómo llegar','nav.carta':'Carta','nav.horaris':'Horarios','nav.reserves':'Reservas','nav.galeria':'Galería','nav.contacte':'Contacto',
@@ -105,6 +107,8 @@
       'form.message':'Mensaje / Petición',
       'form.submit':'Enviar reserva',
       'form.success':'Reserva enviada correctamente ✔ Te contactaremos pronto.',
+      'form.error':'No se ha podido enviar la reserva ✕ Vuelve a intentarlo o llámanos al 931 253 062.',
+      'form.incomplete':'Faltan campos por rellenar. Revísalos, por favor.',
     },
     en: {
       'nav.sobre':'About','nav.arribar':'Getting here','nav.carta':'Menu','nav.horaris':'Hours','nav.reserves':'Bookings','nav.galeria':'Gallery','nav.contacte':'Contact',
@@ -131,6 +135,8 @@
       'form.message':'Message / Request',
       'form.submit':'Send booking',
       'form.success':'Booking sent successfully ✔ We will contact you soon.',
+      'form.error':'The booking could not be sent ✕ Please try again or call us at 931 253 062.',
+      'form.incomplete':'Some fields are missing. Please check them.',
     }
   };
 
