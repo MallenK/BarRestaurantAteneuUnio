@@ -1,0 +1,29 @@
+{
+  "name": "ateneu-unio-wallet-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API de la targeta de fidelitat (Sello Ateneu) per a Apple Wallet i Google Wallet del Bar Restaurant Ateneu Unió.",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "auth:migrate": "npx --yes auth@latest migrate --config ./src/auth.js",
+    "create-staff": "node scripts/create-staff-user.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "addtowallet": "^0.1.7",
+    "better-auth": "^1.7.5",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "morgan": "^1.12.1",
+    "node-fetch": "^3.3.2"
+  }
+}

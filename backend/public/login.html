@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ateneu Unió · Accés de personal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin/admin.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">AU</span>
+    <div>
+      <span class="brand-title">Sello Ateneu</span>
+      <span class="brand-sub">Panell de personal</span>
+    </div>
+  </div>
+</header>
+
+<main class="login-wrap">
+  <section class="card">
+    <h1>Accés de personal</h1>
+    <p class="hint">Inicia sessió amb el teu compte per entrar al panell del Sello Ateneu.</p>
+
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="tu@ateneuuniorestaurant.com" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Contrasenya</label>
+        <input id="password" name="password" type="password" placeholder="••••••••" required autocomplete="current-password" minlength="8">
+      </div>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </div>
+    </form>
+
+    <p id="loginStatus" class="status"></p>
+  </section>
+</main>
+
+<script src="login.js"></script>
+</body>
+</html>

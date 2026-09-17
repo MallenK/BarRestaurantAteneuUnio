@@ -1,0 +1,244 @@
+/* ===== Tokens — heretats de la marca pública (assets/css/styles.css) ===== */
+:root{
+  --paper:#F4F4F0;
+  --ink:#111111;
+  --panel:#181818;      /* segona capa neutra: targetes sobre el fons */
+  --panel-2:#1f1f1f;    /* files alternes / hover */
+  --line:#2c2c2c;
+  --muted:#8a8a84;
+  --red:#E61919;         /* vores i fons plens (btn hover, indicadors) */
+  --red-text:#FF5252;    /* mateix to, ajustat perquè el TEXT vermell sobre
+                             fons fosc compleixi contrast 4.5:1 (WCAG AA) */
+  --red-dim:#7a1010;
+  --ok:#3FAE72;
+  --ok-dim:#1c5236;
+
+  --font-display:"Archivo Black","Archivo",sans-serif;
+  --font-body:"Archivo",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",Consolas,monospace;
+
+  --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:28px; --space-7:40px; --space-8:56px;
+
+  --radius:0; /* món tipogràfic sense cantonades — igual que el web públic */
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--font-body);
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--red);color:#fff}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+a{color:var(--paper);text-underline-offset:2px}
+a:hover{color:var(--red-text)}
+
+code{font-family:var(--font-mono);background:#000;padding:1px 5px;border:1px solid var(--line);font-size:.92em}
+
+/* ===== Encapçalament ===== */
+.bar{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
+  padding:var(--space-4) var(--space-5);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--ink);z-index:10;
+}
+.brand{display:flex;align-items:center;gap:var(--space-3)}
+.brand-mark{
+  font-family:var(--font-display);font-size:13px;
+  background:var(--paper);color:var(--ink);padding:6px 9px;line-height:1;
+}
+.brand-title{font-family:var(--font-mono);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.brand-sub{display:block;font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+.bar-right{display:flex;align-items:center;gap:var(--space-4)}
+.health{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.dot{width:8px;height:8px;background:var(--muted);display:inline-block;flex:none}
+.dot.ok{background:var(--ok)}
+.dot.bad{background:var(--red)}
+
+.user-tag{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.02em}
+.user-tag:not(:empty)::before{content:"· "}
+
+/* ===== Estructura ===== */
+.wrap{max-width:1080px;margin:0 auto;padding:var(--space-6) var(--space-5) var(--space-8)}
+
+.section-title{
+  font-family:var(--font-mono);font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--muted);
+  margin:0 0 var(--space-3);
+}
+
+.actions-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);
+  margin-bottom:var(--space-7);
+}
+@media (max-width:860px){ .actions-grid{grid-template-columns:1fr} }
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:var(--space-5);
+  display:flex;flex-direction:column;
+}
+.card h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:16px;letter-spacing:-.01em;text-transform:none;
+  margin:0 0 var(--space-1);
+}
+.card .hint{margin:0 0 var(--space-4);color:var(--muted);font-size:12.5px;line-height:1.5}
+
+/* ===== Formularis ===== */
+.field-group{display:flex;flex-direction:column;gap:var(--space-3);flex:1}
+.field{display:flex;flex-direction:column;gap:var(--space-1)}
+.field label{
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);
+}
+.field input{
+  background:#000;border:1px solid var(--line);color:var(--paper);
+  padding:10px 11px;font-family:var(--font-body);font-size:14px;
+  transition:border-color .15s;
+}
+.field input::placeholder{color:var(--muted)}
+.field input:hover{border-color:#444}
+.field input:focus{border-color:var(--red);outline:none}
+.field input:invalid:not(:placeholder-shown){border-color:var(--red-text)}
+.field input:disabled{opacity:.5}
+
+.field textarea{
+  background:#000;border:1px solid var(--line);color:var(--paper);
+  padding:10px 11px;font-family:var(--font-body);font-size:14px;
+  resize:vertical;min-height:56px;transition:border-color .15s;
+}
+.field textarea::placeholder{color:var(--muted)}
+.field textarea:hover{border-color:#444}
+.field textarea:focus{border-color:var(--red);outline:none}
+.field textarea:disabled{opacity:.5}
+
+.form-foot{margin-top:var(--space-4)}
+
+/* ===== Targeta "Enviar notificació": formulari en graella ===== */
+.notify-card{margin-bottom:var(--space-7)}
+.notify-form{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3) var(--space-4);
+  align-items:start;
+}
+.notify-body{grid-column:1 / -1}
+.notify-form .form-foot{grid-column:1 / -1;margin-top:var(--space-2)}
+.notify-form .form-foot .btn{width:auto;padding:11px 24px}
+@media (max-width:560px){ .notify-form{grid-template-columns:1fr} }
+
+/* ===== Botons ===== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  background:transparent;border:1px solid var(--paper);color:var(--paper);
+  padding:11px 18px;font-family:var(--font-mono);font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.06em;cursor:pointer;
+  transition:background .15s,color .15s,border-color .15s,opacity .15s;
+  width:100%;
+}
+.btn:hover{background:var(--paper);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:default;background:transparent;color:var(--paper)}
+.btn-primary{border-color:var(--red);color:var(--red-text)}
+.btn-primary:hover{background:var(--red);color:#fff}
+.btn-primary:disabled{background:transparent;color:var(--red-text)}
+.btn-small{width:auto;padding:6px 10px;font-size:10px}
+.btn-ghost{width:auto;border-color:var(--line);color:var(--muted)}
+.btn-ghost:hover{background:var(--panel-2);color:var(--paper);border-color:var(--muted)}
+
+/* ===== Banner d'estat (èxit / error per acció) ===== */
+.status{
+  display:none;align-items:center;gap:var(--space-2);
+  margin-top:var(--space-4);padding:10px 12px;
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;
+  border:1px solid var(--line);
+}
+.status.show{display:flex}
+.status::before{content:"";width:7px;height:7px;flex:none}
+.status.ok{border-color:var(--ok-dim);color:var(--ok)}
+.status.ok::before{background:var(--ok)}
+.status.err{border-color:var(--red-dim);color:var(--red-text)}
+.status.err::before{background:var(--red)}
+
+/* ===== Consola de resposta (JSON cru — eina de QA) ===== */
+details.raw{margin-top:var(--space-3)}
+details.raw summary{
+  cursor:pointer;font-family:var(--font-mono);font-size:10.5px;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.06em;
+  list-style:none;
+}
+details.raw summary::-webkit-details-marker{display:none}
+details.raw summary::before{content:"› ";color:var(--muted)}
+details.raw[open] summary::before{content:"⌄ "}
+.raw-out{
+  margin-top:var(--space-2);background:#000;border:1px solid var(--line);
+  padding:10px 12px;font-family:var(--font-mono);font-size:11.5px;
+  white-space:pre-wrap;word-break:break-word;max-height:220px;overflow:auto;color:#b9b9b3;
+}
+
+/* ===== Secció "Totes les targetes" ===== */
+.list-section{margin-top:var(--space-7)}
+.list-head{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
+  flex-wrap:wrap;margin-bottom:var(--space-4);
+}
+.list-head .section-title{margin:0}
+.toolbar{display:flex;gap:var(--space-3);align-items:center}
+.search-field{position:relative}
+.search-field input{
+  background:#000;border:1px solid var(--line);color:var(--paper);
+  padding:9px 12px;font-family:var(--font-body);font-size:13px;width:220px;
+}
+.search-field input:focus{border-color:var(--red);outline:none}
+.search-field input::placeholder{color:var(--muted)}
+.search-field input:disabled{opacity:.4}
+
+.table-shell{border:1px solid var(--line);overflow:auto;max-height:520px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{
+  position:sticky;top:0;background:var(--panel);
+  font-family:var(--font-mono);font-size:10px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.05em;text-align:left;
+  padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;vertical-align:middle}
+tbody tr:hover{background:var(--panel-2)}
+tbody tr:last-child td{border-bottom:0}
+
+.stamp-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--font-mono);font-size:12px;
+}
+.stamp-pill .bar-track{width:52px;height:5px;background:var(--line);position:relative;flex:none}
+.stamp-pill .bar-fill{position:absolute;inset:0;background:var(--muted)}
+.stamp-pill.reward .bar-fill{background:var(--ok)}
+.stamp-pill.reward{color:var(--ok)}
+
+.empty-row td{padding:var(--space-7) var(--space-4);text-align:center;color:var(--muted);font-family:var(--font-mono);font-size:12px}
+.skeleton-row td{padding:14px 12px}
+.skeleton{height:12px;background:var(--panel-2);position:relative;overflow:hidden}
+.skeleton::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(244,244,240,.06),transparent);
+  animation:shimmer 1.3s infinite;
+}
+@keyframes shimmer{ from{transform:translateX(-100%)} to{transform:translateX(100%)} }
+@media (prefers-reduced-motion: reduce){ .skeleton::after{animation:none} }
+
+/* ===== Login ===== */
+.login-wrap{max-width:380px;margin:12vh auto 0;padding:0 var(--space-5)}
+.login-wrap .card{padding:var(--space-6) var(--space-5)}
+.login-wrap h1{
+  font-family:var(--font-display);font-weight:400;font-size:20px;
+  letter-spacing:-.01em;margin:0 0 var(--space-1);
+}
+.login-wrap .hint{margin:0 0 var(--space-5)}
+.login-wrap form{display:flex;flex-direction:column;gap:var(--space-3)}
+.login-wrap .form-foot{margin-top:var(--space-2)}

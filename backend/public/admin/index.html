@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ateneu Unió · Panell Wallet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">AU</span>
+    <div>
+      <span class="brand-title">Sello Ateneu</span>
+      <span class="brand-sub">Panell de personal</span>
+    </div>
+  </div>
+  <div class="bar-right">
+    <div class="health">
+      <span id="healthDot" class="dot" aria-hidden="true"></span>
+      <span id="healthText">comprovant…</span>
+    </div>
+    <span id="userTag" class="user-tag"></span>
+    <button id="logoutBtn" class="btn btn-ghost btn-small">Sortir</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="actions-grid">
+
+    <section class="card">
+      <h2>Crear targeta</h2>
+      <p class="hint">Simula el formulari públic de <code>/fidelitat</code>. Endpoint obert, no requereix sessió.</p>
+      <form id="createForm" class="field-group">
+        <div class="field">
+          <label for="c_name">Nom</label>
+          <input id="c_name" name="clientName" placeholder="Amy Jane" required minlength="2" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="c_phone">Telèfon</label>
+          <input id="c_phone" name="clientPhone" placeholder="931 253 062" required pattern="^[0-9+\s\-()]{9,20}$">
+        </div>
+        <div class="field">
+          <label for="c_email">Email (opcional)</label>
+          <input id="c_email" name="email" type="email" placeholder="amy@gmail.com" maxlength="120">
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">Crear targeta</button>
+        </div>
+      </form>
+      <p id="createStatus" class="status"></p>
+      <details class="raw"><summary>Resposta de l'API</summary><pre id="createOut" class="raw-out"></pre></details>
+    </section>
+
+    <section class="card">
+      <h2>Segellar targeta</h2>
+      <p class="hint">Requereix sessió de personal. Suma un segell al <code>cardId</code> indicat.</p>
+      <form id="stampForm" class="field-group">
+        <div class="field">
+          <label for="s_cardId">Card ID</label>
+          <input id="s_cardId" name="cardId" placeholder="24 caràcters hex" required pattern="^[a-fA-F0-9]{24}$" title="24 caràcters hexadecimals">
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn btn-primary">+1 segell</button>
+        </div>
+      </form>
+      <p id="stampStatus" class="status"></p>
+      <details class="raw"><summary>Resposta de l'API</summary><pre id="stampOut" class="raw-out"></pre></details>
+    </section>
+
+    <section class="card">
+      <h2>Consultar targeta</h2>
+      <p class="hint">Estat actual (segells, premi) d'un <code>cardId</code>.</p>
+      <form id="lookupForm" class="field-group">
+        <div class="field">
+          <label for="l_cardId">Card ID</label>
+          <input id="l_cardId" name="cardId" placeholder="24 caràcters hex" required pattern="^[a-fA-F0-9]{24}$" title="24 caràcters hexadecimals">
+        </div>
+        <div class="form-foot">
+          <button type="submit" class="btn">Consultar</button>
+        </div>
+      </form>
+      <p id="lookupStatus" class="status"></p>
+      <details class="raw"><summary>Resposta de l'API</summary><pre id="lookupOut" class="raw-out"></pre></details>
+    </section>
+
+  </div>
+
+  <section class="card notify-card">
+    <h2>Enviar missatge</h2>
+    <p class="hint">Afegeix un avís a la targeta, visible quan el client l'obre a Wallet. <strong>Nota:</strong> amb el proveïdor actual (addtowallet.co) no arriba com a notificació de pantalla de bloqueig ni fa so — és un missatge silenciós dins la targeta, no un push real.</p>
+    <form id="notifyForm" class="notify-form">
+      <div class="field">
+        <label for="n_cardId">Card ID</label>
+        <input id="n_cardId" name="cardId" placeholder="24 caràcters hex" required pattern="^[a-fA-F0-9]{24}$" title="24 caràcters hexadecimals">
+      </div>
+      <div class="field">
+        <label for="n_heading">Títol</label>
+        <input id="n_heading" name="heading" placeholder="Oferta especial" required maxlength="100">
+      </div>
+      <div class="field notify-body">
+        <label for="n_body">Missatge</label>
+        <textarea id="n_body" name="body" rows="2" placeholder="Aquest cap de setmana, vine a l'Ateneu Unió i ensenya la teva targeta." required maxlength="500"></textarea>
+      </div>
+      <div class="form-foot">
+        <button type="submit" class="btn btn-primary">Enviar missatge</button>
+      </div>
+    </form>
+    <p id="notifyStatus" class="status"></p>
+    <details class="raw"><summary>Resposta de l'API</summary><pre id="notifyOut" class="raw-out"></pre></details>
+  </section>
+
+  <section class="list-section">
+    <div class="list-head">
+      <h2 class="section-title">Totes les targetes</h2>
+      <div class="toolbar">
+        <div class="search-field">
+          <input id="searchInput" type="search" placeholder="Cerca per nom o telèfon…" disabled>
+        </div>
+        <button id="refreshListBtn" class="btn btn-ghost btn-small">Actualitzar</button>
+      </div>
+    </div>
+
+    <div class="table-shell">
+      <table id="cardsTable">
+        <thead>
+          <tr>
+            <th>Client</th><th>Telèfon</th><th>Segells</th><th>Actualitzat</th><th>Wallet</th><th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="empty-row"><td colspan="6">Prem "Actualitzar" per carregar les targetes registrades.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <details class="raw"><summary>Resposta de l'API</summary><pre id="listOut" class="raw-out"></pre></details>
+  </section>
+
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>

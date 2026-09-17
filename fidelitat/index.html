@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Club Sello Ateneu · Targeta de fidelitat | Ateneu Unió</title>
+<meta name="description" content="Registra't al Sello Ateneu: la targeta de fidelitat del Bar Restaurant Ateneu Unió a la Colònia Güell. Afegeix-la a Apple Wallet o Google Wallet i acumula segells.">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Club Sello Ateneu · Ateneu Unió">
+<meta property="og:description" content="Registra't i afegeix la teva targeta de fidelitat a Apple Wallet o Google Wallet.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ca_ES">
+
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/styles.css?v=3">
+
+<style>
+  .fidelitat-main{padding:120px 0 80px}
+  .fidelitat-intro{max-width:62ch;margin-bottom:32px}
+  .fidelitat-intro h1{font-size:clamp(28px,5vw,44px);margin-bottom:12px}
+  .stamp-track{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 28px}
+  .stamp-dot{width:22px;height:22px;border:1px solid var(--ink);display:grid;place-items:center;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--muted)}
+  .wallet-result{display:none}
+  .wallet-result.show{display:block}
+  .wallet-result .btn{margin-top:18px}
+  #fidelitatForm.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="../index.html" aria-label="Tornar a Ateneu Unió">
+      <div class="logo-mark" aria-hidden="true">AU</div>
+      <div class="brand-name">Ateneu Unió</div>
+    </a>
+    <nav aria-label="Navegació">
+      <a href="../index.html">Tornar al web</a>
+    </nav>
+  </div>
+</header>
+
+<main class="fidelitat-main">
+  <div class="container">
+
+    <div class="fidelitat-intro">
+      <p class="mono bracket" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">Club Sello Ateneu</p>
+      <h1>La teva targeta de fidelitat, sempre al mòbil</h1>
+      <p class="measure">Registra el teu nom i telèfon i rep la targeta "Sello Ateneu" a Apple Wallet o Google Wallet. Cada vegada que vinguis, el personal et segellarà la targeta des del mòbil: als 10 segells, un menú de regal.</p>
+
+      <div class="stamp-track" aria-hidden="true">
+        <span class="stamp-dot">1</span><span class="stamp-dot">2</span><span class="stamp-dot">3</span><span class="stamp-dot">4</span><span class="stamp-dot">5</span>
+        <span class="stamp-dot">6</span><span class="stamp-dot">7</span><span class="stamp-dot">8</span><span class="stamp-dot">9</span><span class="stamp-dot">🎁</span>
+      </div>
+    </div>
+
+    <div class="contact-card" style="max-width:520px">
+
+      <form id="fidelitatForm" class="form">
+
+        <!-- Honeypot anti-spam: invisible per a persones -->
+        <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+          <label for="fid_website">Website</label>
+          <input type="text" id="fid_website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="fid_name">Nom</label>
+          <input id="fid_name" name="clientName" minlength="2" maxlength="80" required>
+        </div>
+
+        <div class="field">
+          <label for="fid_phone">Telèfon</label>
+          <input id="fid_phone" name="clientPhone" type="tel" inputmode="tel"
+                 pattern="^[0-9+\s\-()]{9,20}$" minlength="9" maxlength="20"
+                 placeholder="931 253 062" required>
+        </div>
+
+        <div class="field">
+          <label for="fid_email">Email (opcional)</label>
+          <input id="fid_email" name="email" type="email" maxlength="120">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Crear la meva targeta</button>
+        </div>
+
+      </form>
+
+      <p id="fidSuccess" class="success-msg"></p>
+      <p id="fidErrorSend" class="error-msg" hidden>No hem pogut crear la targeta. Torna-ho a provar en uns segons.</p>
+      <p id="fidErrorIncomplete" class="error-msg" hidden>Revisa el nom i el telèfon abans d'enviar.</p>
+
+      <div id="fidResult" class="wallet-result">
+        <p class="mono" style="font-size:12px;color:var(--muted)">Targeta creada correctament.</p>
+        <a id="fidWalletLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Obrir la meva targeta Wallet</a>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <strong>Ateneu Unió</strong>
+      <div class="small">© <span id="year"></span> Ateneu Unió</div>
+    </div>
+    <a class="btn btn-primary" href="../index.html#reserves">Reserva taula</a>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../assets/js/wallet.js?v=1" defer></script>
+</body>
+</html>
