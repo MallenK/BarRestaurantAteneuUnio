@@ -9,6 +9,10 @@ import * as store from '../store/cardStore.js';
 
 const RESTAURANT_NAME = process.env.RESTAURANT_NAME || 'Ateneu Unió';
 const LOGO_URL = process.env.WALLET_LOGO_URL || 'https://ateneuuniorestaurant.com/assets/img/favicon-512.png';
+// Disseny amb textura (anells, trama, marca d'aigua "AU") validat per ser
+// reconegut com a marcador WebAR (MindAR) a més de servir com a imatge de
+// capçalera del Wallet — un logo pla sol no té prou detall per MindAR.
+const HERO_IMAGE_URL = process.env.WALLET_HERO_IMAGE_URL || 'https://ateneuuniorestaurant.com/assets/img/wallet-hero.png';
 const STAMPS_TO_REWARD = Number(process.env.STAMPS_TO_REWARD || 10);
 
 // Estètica de marca (assets/css/styles.css): fons negre, text paper, vermell d'accent.
@@ -55,6 +59,9 @@ function buildFullPayload({ clientName, clientPhone, stamps, barcodeValue }) {
     cardTitle: `${RESTAURANT_NAME} · Sello Ateneu`,
     header: clientName,
     logoUrl: LOGO_URL,
+    heroImage: HERO_IMAGE_URL,
+    googleHeroImage: HERO_IMAGE_URL,
+    appleHeroImage: HERO_IMAGE_URL,
     hexBackgroundColor: BACKGROUND_COLOR,
     appleFontColor: FONT_COLOR,
     textModulesData: buildTextModules({ clientName, clientPhone, stamps }),
